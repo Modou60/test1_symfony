@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +22,7 @@ class DefaultController extends AbstractController
             ]
         );
     }
+    
     // retourne une réponse
     /**
      * @Route("/salutation", name="index_bonjour")
@@ -66,7 +66,7 @@ class DefaultController extends AbstractController
      */
     public function redirecto($id)
     {
-        return $this->redirectToRoute('index_bonjour2');
+        return $this->redirectToRoute('index_affichage');
     }
 
     /**
