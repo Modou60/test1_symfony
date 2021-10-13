@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -6,62 +7,62 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
-     * @Route("/view")
-     */
+ * @Route("/view")
+ */
 
 class ViewController extends AbstractController
 {
-/**
- * @Route("/index")
-  */    
-     public function voir(): Response
-     {
-         return $this->render(
-             'view/view.html.twig',
-             [
-                 'controller_name' => 'index',
-             ]
-             );
-     }
+    /**
+     * @Route("/index")
+     */
+    public function voir(): Response
+    {
+        return $this->render(
+            'view/view.html.twig',
+            [
+                'controller_name' => 'index',
+            ]
+        );
+    }
 
-     /**
-      * @Route("tableau", name="index_tab")
-      */
+    /**
+     * @Route("tableau", name="index_tab")
+     */
 
-      public function tables(): Response
-      {
-          // J'initialise mon tableau
-          $tab = [10, 15, 18];
+    public function tables(): Response
+    {
+        // J'initialise mon tableau
+        $tab = [10, 15, 18];
 
-          // J'appelle la vue TABLEAUX/TWIG
+        // J'appelle la vue TABLEAUX/TWIG
 
-          return $this->render('ma_view_tab.html.twig',
-          [
-                      // J'affiche Mon tableau
-                      'cours_name' => 'COMPOSANTE VUE',
-                      'tableau' => $tab,
-          ]);
-      }
+        return $this->render(
+            'ma_view_tab.html.twig',
+            [
+                // J'affiche Mon tableau
+                'cours_name' => 'COMPOSANTE VUE',
+                'tableau' => $tab,
+            ]
+        );
+    }
 
 
-      /**
-       * @Route("/affiche", name="view_affiche")
-       */
+    /**
+     * @Route("/affiche", name="view_affiche")
+     */
 
-       public function affichage(): Response
-       {
-           // j'initialise mon tableau
-           $tab = ["Modou", "Valery"];
+    public function affichage(): Response
+    {
 
-           //j'appelle la vue tableau
-           return $this->render('view/affichage.html.twig', [
-               // j'affiche les données
-               'cours_name' => 'COMPOSANTE VUE',
-               'affiche' => $tab,
-           ]);
-       }
+        //j'appelle la vue de l'affichage
+        return $this->render('view/affichage.html.twig', [
+            // j'affiche les données
+            'nom' => 'Ndao',
+            'prenom' => 'Modou',
+        ]);
+    }
 
-// liste des stagiaires DWWM2 dans vue twig
+    // liste des stagiaires DWWM2 dans vue twig
     /**
      * @Route("/liste", name="index_liste")
      */
@@ -71,11 +72,38 @@ class ViewController extends AbstractController
         $prenom = ["Ange Planitey", "Bandiougou Traoré", "Fabrice Folrot", "Matthieu Thuet", "Moaaz Khassawneh", "Modou Ndao", "Nabi Abib", "Rudy Lopez", "Valery Nwehla"];
         // $nom = ["Planitey", "Traoré", "Folrot", "Thuet", "Khassawneh", "Ndao", "Abib", "Lopez", "Nwehla"];
 
- // appel de la vue listestagiaire
- return $this->render('view/Listestagiaire.html.twig',[
- // l'affichage des données
- 'cours_name' => 'COMPOSANTE VUE',
- 'liste' => $prenom,
- ]);
+        // appel de la vue listestagiaire
+        return $this->render('view/Listestagiaire.html.twig', [
+            // l'affichage des données
+            'cour_name' => 'COMPOSANTE VUE',
+            'liste_prenom' => $prenom,
+        ]);
+    }
+
+
+    /**
+     * @Route("/calcul", name="index_calcul")
+     */
+    public function calcul(): Response
+    {
+        // j'appelle la vue
+        return $this->render('view/calcul.html.twig', [
+            // J'affiche le résultat dans la vue
+            'cours_name' => 'COMPOSANTE VUE',
+        ]);
+    }
+
+    /**
+     * @Route("/note", name="index_note")
+     */
+    public function calculNote(): Response
+    {
+    }
+
+    /**
+     * @Route("/boucle", name="index_boucle")
+     */
+    public function boucle(): Response
+    {
     }
 }

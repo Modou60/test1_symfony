@@ -1,0 +1,161 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Quelques opérations!
+{% endblock %}
+
+{% block body %}
+	<h2>
+		{% block h1 %}
+			L'addition
+		{% endblock %}
+	</h2>
+	<br/><br/>
+	{% set  x = 125 %}
+	{% set y = 555 %}
+	{% set some = x + y %}
+	{{ x }}
+	+
+	{{ y }}
+	=
+	{{ some }}
+
+
+	<h2>
+		Soustraction
+	</h2>
+	Afficher le resultat du Calcul X - Y
+	{% set x, y = '125', '555' %}
+	{% set Diff = x - y %}
+	<br>
+	{{ x }}
+	-
+	{{ y }}
+	=
+	{{ Diff}}
+	<br>
+	Reponse =
+	{{ Diff }}
+
+
+	<h2>
+		Multiplication
+	</h2>
+
+	{% set a, b = '16', '4' %}
+	{% set produit = a*b%}
+	{{ a }}
+	*
+	{{ b }}
+	=
+	{{ produit }}
+
+	<h2>
+		Puissance
+	</h2>
+
+	{% set e, f = '5', '2' %}
+	{% set puissance = e ** f %}
+
+	{{ e }}
+	**
+	{{ f }}
+	=
+	{{ puissance }}
+
+	<h2>
+		le résultat des élèves
+	</h2>
+
+	{% set git, uml, symfony, java = '12', '15', '15', '10' %}
+
+	<h3>
+		Votre note en git
+	</h3>
+	<br/>
+	{% if git < 10 %}
+		Votre note en Git :
+		{{ git }}
+		<br/>
+		votre mention = Non acquis
+	{% elseif (git >= 10) and (git < 12) %}
+		Votre note en Git :
+		{{ git }}
+		<br/>
+		Votre mention : en cours de connaissance
+	{% else %}
+		Votre note en Git :
+		{{ git }}<br/>
+		votre mention : acquis
+	{% endif %}
+
+	<br/><br/>
+
+	<h3>
+		Votre note en UML
+	</h3>
+	<br/>
+	{% if uml < 10 %}
+		Votre note en UML :
+		{{ uml }}
+		<br/>
+		votre mention = Non acquis
+	{% elseif (uml >= 10) and (uml < 12) %}
+		Votre note en UML :
+		{{ uml }}
+		<br/>
+		Votre mention : en cours de connaissance
+	{% else %}
+		Votre note en UML :
+		{{ uml }}<br/>
+		votre mention : acquis
+	{% endif %}
+
+	<br/><br/>
+
+	<h3>
+		Votre note en Symfony
+	</h3>
+	<br/>
+
+	{% if symfony < 10 %}
+		Votre note en Symfony :
+		{{ symfony }}
+		<br/>
+		votre mention = Non acquis
+	{% elseif (symfony >= 10) and (symfony < 12) %}
+		Votre note en Symfony :
+		{{ symfony }}
+		<br/>
+		Votre mention : en cours de connaissance
+	{% else %}
+		Votre note en Symfony :
+		{{ symfony }}<br/>
+		votre mention : acquis
+	{% endif %}
+
+	<br/><br/>
+
+	<h3>
+		Votre note en Java
+	</h3>
+	<br/>
+	{% if java < 10 %}
+		Votre note en Java :
+		{{ java }}
+		<br/>
+		votre mention = Non acquis
+	{% elseif (java >= 10) and (java < 12) %}
+		Votre note en Java :
+		{{ java }}
+		<br/>
+		Votre mention : en cours de connaissance
+	{% else %}
+		Votre note en Java :
+		{{ java }}<br/>
+		votre mention : acquis
+	{% endif %}
+
+</div>
+
+<br/><br/>{% endblock %}

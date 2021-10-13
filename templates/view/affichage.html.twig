@@ -4,10 +4,9 @@ Test affichage
 {% endblock %}
 
 {% block body %}
-    <h1>{% block h1 %}Affichage de prénom :{% endblock %}</h1>
+    <h1>{% block h1 %}Affichage de de mon nom :{% endblock %}</h1>
     <br/><br/>
     <ul>
-     <li>{{ affiche[0] }}</li>
-     <li>{{ affiche[1] }}</li>
+     {{ nom }} {{ prenom }}</li>
     </ul>
 {% endblock %}
