@@ -98,6 +98,10 @@ class ViewController extends AbstractController
      */
     public function calculNote(): Response
     {
+        // appel de la vue calcul
+        return $this->render('view/calcul.html.twig',[
+            'cours_name' => 'COMPOSANTE VUE',
+        ]);
     }
 
     /**
@@ -106,4 +110,35 @@ class ViewController extends AbstractController
     public function boucle(): Response
     {
     }
+
+    /**
+     * @Route("/operation", name="index_operation")
+     */
+    public function operation(): Response
+    {
+        return $this->render('view/calcul.html.twig',[
+            'controller_name' => 'index_operation',
+                    ]);
+    }
+
+    /**
+     * @Route("/capitalize", name="index_capitalize")
+     */
+    public function majuscule(): Response
+    {
+        return $this->render('view/calcul.html.twig',[
+'controller_name' => 'index_capitalize',
+        ]);
+    }
+
+    /**
+     * @Route("/moyenne", name="index_moyenne")
+     */
+public function moyenne(): Response
+{
+    return $this->render(
+        'view/moyenne.html.twig',[
+            'controller_name' => 'index_moyenne',
+        ]);
+}
 }

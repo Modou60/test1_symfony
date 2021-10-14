@@ -141,21 +141,131 @@
 	</h3>
 	<br/>
 	{% if java < 10 %}
-		Votre note en Java :
-		{{ java }}
-		<br/>
-		votre mention = Non acquis
+	Votre note en Java :
+	{{ java }}
+	<br/>
+	votre mention = Non acquis
 	{% elseif (java >= 10) and (java < 12) %}
-		Votre note en Java :
-		{{ java }}
-		<br/>
-		Votre mention : en cours de connaissance
+	Votre note en Java :
+	{{ java }}
+	<br/>
+	Votre mention : en cours de connaissance
 	{% else %}
-		Votre note en Java :
-		{{ java }}<br/>
-		votre mention : acquis
+	Votre note en Java :
+	{{ java }}<br/>
+	votre mention : acquis
 	{% endif %}
 
 </div>
 
-<br/><br/>{% endblock %}
+<br/><br/>
+
+<h2>
+	quelques  opérations
+</h2>
+
+<div>
+	<table border="1">
+	<tr>
+	<th> </th>
+	<th> A </th>
+	<th> B </th>
+	<th> C </th>
+	<th> D </th>
+	<th>  </th>
+	</tr>
+
+	<tr>
+	<td>
+	addition
+	{% set A, B, C, D = '10', '11', '12', '15'%}
+	{% set addition = A+B+C+D %}
+	</td>
+	<td>
+	10
+	</td>
+	<td>
+	11
+	</td>
+	<td>
+	12
+	</td>
+	<td>
+	15
+	</td>
+	<td>
+	{{ addition }}
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	Soustraction
+	{% set A, B, C, D = '20', '11', '13', '16'%}
+	{% set soustraction = A-B-C-D %}
+	</td>
+	<td>
+	20
+	</td>
+	<td>
+	11
+	</td>
+	<td>
+	13
+	</td>
+	<td>
+	16
+	</td>
+	<td>
+	{{ soustraction }}
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	Multiplication
+	{% set A, B, C, D = '30', '11', '14', '16'%}
+	{% set multiplication = A*B*C*D %}
+	</td>
+	<td>
+	30
+	</td>
+	<td>
+	11
+	</td>
+	<td>
+	14
+	</td>
+	<td>
+	16
+	</td>
+	<td>
+	{{ multiplication }}
+	</td>
+	</tr>
+	
+	<tr>
+	<td>
+	Division
+	{% set A, B = '40', '11'%}
+	{% set division = A/B %}
+	</td>
+	<td>
+	40
+	</td>
+	<td>
+	11
+	</td>
+	<td>
+	
+	</td>
+	<td>
+	
+	</td>
+	<td>
+	{{ division }}
+	</td>
+	</tr>
+	</table>
+</div>
+{% endblock %}

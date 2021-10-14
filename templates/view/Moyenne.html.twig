@@ -1,0 +1,98 @@
+{% extends "base.html.twig" %}
+
+{% block title %} La moyenne des stagiaires {% endblock %}
+
+{% block body %}
+<h1>
+Liste des moyennes
+</h1>
+
+<br/><br/>
+
+<div>
+<table border=1>
+<tr>
+<th> </th>
+<th> Pierre </th>
+<th> Paul </th>
+<th> Jacques </th>
+<th> Delphine </th>
+</tr>
+<tr>
+<td> Analyse </td>
+<td> 10 {% set analysepierre = '10' %} </td>
+<td> 11 {% set analysepaul = '11' %} </td>
+<td> 9 {% set analysejacques = '9' %} </td>
+<td> 15 {% set analysedelphine = '15' %} </td>
+</tr>
+
+<tr>
+<td> Algorithme </td>
+<td> 8 {% set algopierre = '8' %} </td>
+<td> 10 {% set algopaul = '10' %} </td>
+<td> 15 {% set algojacques = '15' %} </td>
+<td> 8 {% set algodelphine = '8' %} </td>
+</tr>
+
+<tr>
+<td> Programmation </td>
+<td> 10 {% set programpierre = '10' %} </td>
+<td> 11 {% set programpaul = '11' %} </td>
+<td> 14 {% set programjacques = '14' %} </td>
+<td> 17 {% set programdelphine = '17' %} </td>
+</tr>
+
+<tr>
+<td> Recherche </td>
+<td> 10 {% set recherchepierre = '10' %} </td>
+<td> 11 {% set rechechepaul = '11' %} </td>
+<td> 9 {% set recherchejacques = '9' %} </td>
+<td> 4 {% set recherchedelphine = '4' %} </td>
+</tr>
+
+<tr>
+<td> Moyenne </td>
+<td> {% set moyennep=(analysepierre+programpierre+algopierre+recherchepierre)/4 %} {{ moyennep }} </td>
+<td> {% set moyennepa=(analysepaul+programpaul+algopaul+rechechepaul)/4%} {{ moyennepa}} </td>
+<td> {% set moyennej=(analysejacques+programjacques+algojacques+recherchejacques)/4%} {{ moyennej }} </td>
+<td> {% set moyenned=(analysedelphine+programdelphine+algodelphine+recherchedelphine)/4%} {{ moyenned }} </td>
+</tr>
+
+<tr>
+<td> Décisions </td>
+<td> 	{% if moyennep < 10 %}
+		votre mention = Non acquis
+	{% elseif (moyennep >= 10) and (moyennep < 12) %}
+		Votre mention : en cours de connaissance
+	{% else %}
+		votre mention : acquis
+	{% endif %}
+</td>
+<td> {% if moyennepa < 10 %}
+		votre mention = Non acquis
+	{% elseif (moyennepa >= 10) and (moyennepa < 12) %}
+		Votre mention : en cours de connaissance
+	{% else %}
+		votre mention : acquis
+	{% endif %} </td>
+<td> {% if moyennej < 10 %}
+		votre mention = Non acquis
+	{% elseif (moyennej >= 10) and (moyennej < 12) %}
+		Votre mention : en cours de connaissance
+	{% else %}
+		votre mention : acquis
+	{% endif %} </td>
+<td> {% if moyenned < 10 %}
+		votre mention = Non acquis
+	{% elseif (moyenned >= 10) and (moyenned < 12) %}
+		Votre mention : en cours de connaissance
+	{% else %}
+		votre mention : acquis
+	{% endif %} </td>
+</tr>
+
+</table>
+</div>
+
+<br/><br/>
+{% endblock %}
