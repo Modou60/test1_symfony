@@ -25,9 +25,9 @@ class BiblioController extends AbstractController
      */
     public function livre(): Response
     {
-        return $this->render('biblio/livre.html.twig',[
+        return $this->render('biblio/livres.html.twig',[
             'controller_name' => 'index_livre',
-        ]);
+    ]);     
     }
 
     /**

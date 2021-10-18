@@ -1,3 +1,17 @@
 {% extends "base.html.twig" %}
 
 {% block title %} la page admin{% endblock %}
+
+{% block body %}
+<h1> la page de l'admin </h1>
+
+<br/><br/>
+<div>
+<ul>
+<li> <a href="{{ path('index_enregistrer')}} "> Enregistrer un livre </a> </li>
+<li> <a href="{{ path('index_enregistrer')}} "> Enregistrer un livre </a> </li>
+</ul>
+
+</div>
+
+{% endblock %}
