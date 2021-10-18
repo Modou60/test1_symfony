@@ -82,12 +82,12 @@ class BiblioController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="index_admin")
+     * @Route("/administrer", name="index_administrer")
      */
     public function administrer(): Response
     {
         return $this->render('biblio/admin.html.twig',[
-            'controller_name' => 'index_admin',
+            'controller_name' => 'index_administrer',
         ]);
     }
 
@@ -102,6 +102,74 @@ class BiblioController extends AbstractController
         ]);
     }
 
-    
+ /**
+     * @Route("/systeme", name="index_systeme")
+     */
+    public function systeme(): Response
+    {
+        return $this->render('biblio/systeme.html.twig',[
+            'controller_name' => 'index_systeme',
+        ]);
+    }
+
+    /**
+     * @Route("/utilisateur", name="index_utilisateur")
+     */
+    public function utilisateur(): Response
+    {
+        return $this->render('biblio/utilisateurs.html.twig',[
+            'controller_name' => 'index_utilisateur',
+        ]);
+    }
+
+    /**
+     * @Route("/articleindex", name="index_article")
+     */
+    public function article(): Response
+    {
+        return $this->render('biblio/article.html.twig',[
+            'controller_name' => 'index_article',
+        ]);
+    }
    
+/**
+     * @Route("/contenu", name="index_contenu")
+     */
+    public function gestionContenu(): Response
+    {
+        return $this->render('biblio/contenu.html.twig',[
+            'controller_name' => 'index_contenu',
+        ]);
+    }
+
+    /**
+     * @Route("/image", name="index_image")
+     */
+    public function gestionImage(): Response
+    {
+        return $this->render('biblio/image.html.twig',[
+            'controller_name' => 'index_image',
+        ]);
+    }
+
+    /**
+     * @Route("/extension", name="index_extension")
+     */
+    public function gestionExtension(): Response
+    {
+        return $this->render('biblio/extension.html.twig',[
+            'controller_name' => 'index_extension',
+        ]);
+    }
+
+    /**
+     * @Route("/logout", name="index_logout")
+     */
+    public function logout(): Response
+    {
+        return $this->render('biblio/index.html.twig',[
+            'controller_name' => 'index_logout',
+        ]);
+    }
+
 }

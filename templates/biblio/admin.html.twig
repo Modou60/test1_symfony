@@ -1,17 +1,28 @@
 {% extends "base.html.twig" %}
 
-{% block title %} la page admin{% endblock %}
+{% block title %}
+	la page admin
+{% endblock %}
 
 {% block body %}
-<h1> la page de l'admin </h1>
+	<h1>
+		la page de l'admin
+	</h1>
 
-<br/><br/>
-<div>
-<ul>
-<li> <a href="{{ path('index_enregistrer')}} "> Enregistrer un livre </a> </li>
-<li> <a href="{{ path('index_enregistrer')}} "> Enregistrer un livre </a> </li>
-</ul>
+	<br/><br/>
+	<div>
+		<ul>
+			<li><ahref="{{path('biblio')}}">Accuil</a></li>
+			<li><ahref="{{path('index_systeme')}}">Configuration du système</a></li>
+			<li><ahref="{{path('index_utilisateur')}}">Gestion des utilisateurs</a></li>
+			<li><ahref="{{ path('index_contenu')}} ">Gestion des contenus</a></li>
+			<li><ahref="{{path('index_articleindex')}}">Gestion des articles à la une</a></li>
+			<li><ahref="{{ path('index_categorie')}} ">Gestion des catégories</a></li>
+			<li><ahref="{{ path('index_image')}} ">Gestion des images</a></li>
+			<li><ahref="{{ path('index_extension')}} ">Activation / Désactivaation</a></li>
+            <li> <a href="{{ path('index_logout')}} "> Logout pour revenir à son espace personnel</a> </li>
+		</ul>
 
-</div>
+	</div>
 
 {% endblock %}
