@@ -25,9 +25,9 @@ class BiblioController extends AbstractController
      */
     public function livre(): Response
     {
-        return $this->render('biblio/livres.html.twig',[
+        return $this->render('biblio/livres.html.twig', [
             'controller_name' => 'index_livre',
-    ]);     
+        ]);
     }
 
     /**
@@ -35,7 +35,7 @@ class BiblioController extends AbstractController
      */
     public function quoi(): Response
     {
-        return $this->render('biblio/quoi.html.twig',[
+        return $this->render('biblio/quoi.html.twig', [
             'controller_name' => 'index_quoi',
         ]);
     }
@@ -45,18 +45,18 @@ class BiblioController extends AbstractController
      */
     public function quoi2(): Response
     {
-        return $this->render('biblio/quoi2.html.twig',[
+        return $this->render('biblio/quoi2.html.twig', [
             'controller_name' => 'index_quoi2',
         ]);
     }
-    
-    
+
+
     /**
      * @Route("/location", name="index_location")
      */
     public function location(): Response
     {
-        return $this->render('biblio/location.html.twig',[
+        return $this->render('biblio/location.html.twig', [
             'controller_name' => 'index_location',
         ]);
     }
@@ -66,7 +66,7 @@ class BiblioController extends AbstractController
      */
     public function documentation(): Response
     {
-        return $this->render('biblio/documentation.html.twig',[
+        return $this->render('biblio/documentation.html.twig', [
             'controller_name' => 'index_documentation',
         ]);
     }
@@ -76,38 +76,38 @@ class BiblioController extends AbstractController
      */
     public function contacter(): Response
     {
-        return $this->render('biblio/contact.html.twig',[
+        return $this->render('biblio/contact.html.twig', [
             'controller_name' => 'index_contact',
         ]);
     }
 
     /**
-     * @Route("/administrer", name="index_administrer")
+     * @Route("/admin", name="index_admin")
      */
     public function administrer(): Response
     {
-        return $this->render('biblio/admin.html.twig',[
-            'controller_name' => 'index_administrer',
+        return $this->render('biblio/admin.html.twig', [
+            'controller_name' => 'index_admin',
         ]);
     }
 
-    
+
     /**
      * @Route("/connexion", name="index_connexion")
      */
     public function connexion(): Response
     {
-        return $this->render('biblio/connexion.html.twig',[
+        return $this->render('biblio/connexion.html.twig', [
             'controller_name' => 'index_connexion',
         ]);
     }
 
- /**
+    /**
      * @Route("/systeme", name="index_systeme")
      */
     public function systeme(): Response
     {
-        return $this->render('biblio/systeme.html.twig',[
+        return $this->render('biblio/systeme.html.twig', [
             'controller_name' => 'index_systeme',
         ]);
     }
@@ -117,7 +117,7 @@ class BiblioController extends AbstractController
      */
     public function utilisateur(): Response
     {
-        return $this->render('biblio/utilisateurs.html.twig',[
+        return $this->render('biblio/utilisateurs.html.twig', [
             'controller_name' => 'index_utilisateur',
         ]);
     }
@@ -127,17 +127,17 @@ class BiblioController extends AbstractController
      */
     public function article(): Response
     {
-        return $this->render('biblio/article.html.twig',[
+        return $this->render('biblio/article.html.twig', [
             'controller_name' => 'index_article',
         ]);
     }
-   
-/**
+
+    /**
      * @Route("/contenu", name="index_contenu")
      */
     public function gestionContenu(): Response
     {
-        return $this->render('biblio/contenu.html.twig',[
+        return $this->render('biblio/contenu.html.twig', [
             'controller_name' => 'index_contenu',
         ]);
     }
@@ -147,7 +147,7 @@ class BiblioController extends AbstractController
      */
     public function gestionImage(): Response
     {
-        return $this->render('biblio/image.html.twig',[
+        return $this->render('biblio/image.html.twig', [
             'controller_name' => 'index_image',
         ]);
     }
@@ -157,7 +157,7 @@ class BiblioController extends AbstractController
      */
     public function gestionExtension(): Response
     {
-        return $this->render('biblio/extension.html.twig',[
+        return $this->render('biblio/extension.html.twig', [
             'controller_name' => 'index_extension',
         ]);
     }
@@ -167,9 +167,8 @@ class BiblioController extends AbstractController
      */
     public function logout(): Response
     {
-        return $this->render('biblio/index.html.twig',[
+        return $this->render('biblio/index.html.twig', [
             'controller_name' => 'index_logout',
         ]);
     }
-
 }
