@@ -171,4 +171,5 @@ class BiblioController extends AbstractController
             'controller_name' => 'index_logout',
         ]);
     }
+    
 }
