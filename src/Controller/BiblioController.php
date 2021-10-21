@@ -171,5 +171,16 @@ class BiblioController extends AbstractController
             'controller_name' => 'index_logout',
         ]);
     }
+
+    /**
+     * @Route("/gerarticle", name="index_gerarticle")
+     */
+    public function gerarticle(): Response
+    {
+        return $this->render('article/index.html.twig', [
+            'controller_name' => 'BiblioController',
+        ]);
+    }
+
     
 }

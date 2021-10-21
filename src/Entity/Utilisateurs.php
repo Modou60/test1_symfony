@@ -20,12 +20,12 @@ class Utilisateurs
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $noms;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenoms;
+    private $prenom;
 
     /**
      * @ORM\Column(type="array", nullable=true)
@@ -38,14 +38,14 @@ class Utilisateurs
     private $dateNaissance;
 
     /**
-     * @ORM\Column(type="string", length=55)
+     * @ORM\Column(type="string", length=255)
      */
     private $login;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
+    private $passWord;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -53,40 +53,40 @@ class Utilisateurs
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
      * @ORM\Column(type="array")
      */
-    private $role ["Locataire", "Propriétaire", "Gestionnaire", "Administrateur"];
+    private $role = [];
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNoms(): ?string
+    public function getNom(): ?string
     {
-        return $this->noms;
+        return $this->nom;
     }
 
-    public function setNoms(string $noms): self
+    public function setNom(string $nom): self
     {
-        $this->noms = $noms;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getPrenoms(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->prenoms;
+        return $this->prenom;
     }
 
-    public function setPrenoms(string $prenoms): self
+    public function setPrenom(string $prenom): self
     {
-        $this->prenoms = $prenoms;
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -127,14 +127,14 @@ class Utilisateurs
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPassWord(): ?string
     {
-        return $this->password;
+        return $this->passWord;
     }
 
-    public function setPassword(string $password): self
+    public function setPassWord(string $passWord): self
     {
-        $this->password = $password;
+        $this->passWord = $passWord;
 
         return $this;
     }
@@ -156,19 +156,19 @@ class Utilisateurs
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRole(): ?array
     {
         return $this->role;
     }
 
-    public function setRole(string $role): self
+    public function setRole(array $role): self
     {
         $this->role = $role;
 

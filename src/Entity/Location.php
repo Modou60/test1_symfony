@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 namespace App\Entity;
 
@@ -20,7 +20,7 @@ class Location
     /**
      * @ORM\Column(type="date")
      */
-    private $Date;
+    private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -38,17 +38,17 @@ class Location
     private $image = [];
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text")
      */
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $valeur;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $adresse;
 
@@ -69,12 +69,12 @@ class Location
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->Date;
+        return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $Date): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->Date = $Date;
+        $this->date = $date;
 
         return $this;
     }
@@ -120,19 +120,19 @@ class Location
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getValeur(): ?string
+    public function getValeur(): ?int
     {
         return $this->valeur;
     }
 
-    public function setValeur(string $valeur): self
+    public function setValeur(?int $valeur): self
     {
         $this->valeur = $valeur;
 
