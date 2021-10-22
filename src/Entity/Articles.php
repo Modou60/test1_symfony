@@ -32,6 +32,16 @@ class Articles
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $image = [];
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $resumé;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,30 @@ class Articles
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getImage(): ?array
+    {
+        return $this->image;
+    }
+
+    public function setImage(?array $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getResumé(): ?string
+    {
+        return $this->resumé;
+    }
+
+    public function setResumé(string $resumé): self
+    {
+        $this->resumé = $resumé;
 
         return $this;
     }

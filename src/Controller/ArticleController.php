@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,18 +33,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    // deuxième méthode
-    /**
-     * @Route("/{id}", name="art_affichage",methods={"GET"})
-     */
-    public function montrer(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
-    {
-        return $this->render('article/affichage.html.twig',[
-            'id' => $articles->getId(),
-            'articles' => $articles,
-        ]);
-    }
-
+    
     /**
      * @Route("/nouveau", name="articles_nouveau", methods={"GET", "POST"})
      */
@@ -55,7 +45,7 @@ class ArticleController extends AbstractController
        // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
        $articles->setTitre(" Titre de mon Article");
        $articles->setImage(" photo de mon Article");
-       $articles->setResume(" Titre de mon Article");
+       $articles->setResumé(" Titre de mon Article");
        $articles->setDate(new  \DateTime());
        $articles->setContenu(" Contenu de mon Article Contenu de mon ArticleContenu de mon ArticleContenu de mon ArticleContenu de mon Article");
 
@@ -68,4 +58,17 @@ class ArticleController extends AbstractController
            'articles' => $articles,
        ]);
     }
+
+    // deuxième méthode
+    /**
+     * @Route("/{id}", name="art_affichage",methods={"GET"})
+     */
+    public function montrer(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
+    {
+        return $this->render('article/affichage.html.twig',[
+            'id' => $articles->getId(),
+            'articles' => $articles,
+        ]);
+    }
+
 }

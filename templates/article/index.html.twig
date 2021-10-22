@@ -21,15 +21,13 @@
 	<div class="example-wrapper">
 		<h1>
 			Bienvenu(e) à la page de la gestion des articles! ✅</h1>
-<br/><br/>
-<hr/>
-<br/>
-<div id="menu" class="menu">
-<ul>
-
-</ul>
-</div>
-		<table class="table">
+		<br/><br/>
+		<hr/>
+		<br/>
+		<div id="menu" class="menu">
+			<ul></ul>
+		</div>
+		<table class="table" border="1">
 			<tbody>
 				{% for article in produit %}
 					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
@@ -40,16 +38,18 @@
 						</td>
 						<td>{{ article.contenu }}
 						</td>
+						<td>
+							<li><a href="{{ path('art_affichage', {'id':articles.id})}}"> Lire mon action </a></li>
+						</td>
 					</tr>
 				{% else %}
 					<tr>
 						<td colspan="5">Vous n'avez pas d'enregistrement!
 						</td>
-						<td></td>
 					</tr>
 				{% endfor %}}
 			</tbody>
 		</table>
-        
+
 	</div>
-{% endblock %}
+</div>{% endblock %}
