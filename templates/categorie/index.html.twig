@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Présentation des catégories!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Vous êtes à la rubrique des catégories! ✅</h1>
+
+<br/><br/>
+<hr/>
+<br/>
+
+<table border="1">
+<tbody>
+{% for categor in categorie %}
+<thead>
+<tr>
+<th> id </th>
+<th> titre </th>
+<th> resume </th>
+</tr>
+</thead>
+
+<tr>
+<td>{{categor.id }} </td>
+<td> {{categor.titre}} </td>
+<td>{{ categor.resume }} </td>
+</tr>       
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}

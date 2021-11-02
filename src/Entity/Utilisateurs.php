@@ -27,10 +27,6 @@ class Utilisateurs
      */
     private $prenom;
 
-    /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $photo = [];
 
     /**
      * @ORM\Column(type="date")
@@ -57,10 +53,16 @@ class Utilisateurs
      */
     private $email;
 
+    
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $role = [];
+    private $photo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $role;
 
     public function getId(): ?int
     {
@@ -91,17 +93,6 @@ class Utilisateurs
         return $this;
     }
 
-    public function getPhoto(): ?array
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?array $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
 
     public function getDateNaissance(): ?\DateTimeInterface
     {
@@ -163,12 +154,25 @@ class Utilisateurs
         return $this;
     }
 
-    public function getRole(): ?array
+    
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
     {
         return $this->role;
     }
 
-    public function setRole(array $role): self
+    public function setRole(?string $role): self
     {
         $this->role = $role;
 

@@ -25,12 +25,7 @@ class Categorie
     /**
      * @ORM\Column(type="text")
      */
-    private $resumé;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Categorie;
+    private $resume;
 
     public function getId(): ?int
     {
@@ -49,26 +44,14 @@ class Categorie
         return $this;
     }
 
-    public function getResumé(): ?string
+    public function getResume(): ?string
     {
-        return $this->resumé;
+        return $this->resume;
     }
 
-    public function setResumé(string $resumé): self
+    public function setResume(string $resume): self
     {
-        $this->resumé = $resumé;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?string
-    {
-        return $this->Categorie;
-    }
-
-    public function setCategorie(string $Categorie): self
-    {
-        $this->Categorie = $Categorie;
+        $this->resume = $resume;
 
         return $this;
     }

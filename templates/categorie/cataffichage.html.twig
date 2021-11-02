@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Affichage d'une catégorie choisie! {% endblock %}
+
+{% block body %}
+
+<h1> Nouvelle catégorie </h1>
+
+<br/><br/>
+<hr/>
+<br/><br/>
+
+<table class="table" border="1">
+<tbody>
+<thead>
+<tr>
+<th>id</th>
+<th>titre</th>
+<th>résumé</th>
+</tr>
+</thead>
+
+<tr>
+<td>{{ refcat.id }}</td>
+<td>{{ refcat.titre }}</td>
+<td>{{ refcat.resume }}</td>
+</tr>
+</tbody>
+</table>
+{% endblock %}

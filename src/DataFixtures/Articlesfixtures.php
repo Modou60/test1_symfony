@@ -12,13 +12,14 @@ class Articlesfixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i=0; $i<20 ; $i++ ) 
+        for ($i=0; $i<50 ; $i++ ) 
         { 
             $articles = new Articles();
             
             $articles->setTitre(" Titre de l'article N°$i ")
                     ->setContenu(" Contenu de l'article N° $i ")
-                    ->setDate(new \DateTime());
+                    ->setDate(new \DateTime())
+                    ->setResumé(" Résumé de l'article N° $i ");
                     $manager->persist($articles);
         $manager->flush();
     }
