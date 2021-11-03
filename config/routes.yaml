@@ -3,6 +3,11 @@
 #    controller: App\Controller\DefaultController::index
 
 
+
+demarrage:
+    path: /
+    controller: App\Controller\ArticleController::demarrage
+
 index:
     path: /accueil
     controller: App\Controller\HomeController::accueil

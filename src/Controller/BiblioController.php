@@ -5,11 +5,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+/**
+ * @Route("/biblio")
+ */
 class BiblioController extends AbstractController
 {
     /**
-     * @Route("/biblio", name="biblio")
+     * @Route("/", name="biblio")
      */
     public function index(): Response
     {

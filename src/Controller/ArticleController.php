@@ -23,7 +23,7 @@ class ArticleController extends AbstractController
      * @Route("/", name="ger_article")
      */
     // première méthode
-    public function index(): Response
+    public function demarrage(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Articles::class);
         $articles = $repo->findAll();
