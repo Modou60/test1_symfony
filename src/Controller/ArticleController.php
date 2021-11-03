@@ -19,21 +19,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
+/**
+     * @Route("/", name="demarrage")
+     */
+    public function demarrage(): Response
+    {
+        return $this->render('article/index.html.twig', [
+        ]);
+    }
+
+
     /**
-     * @Route("/", name="ger_article")
+     * @Route("/", name="livre")
      */
     // première méthode
-    public function demarrage(): Response
+    public function livre(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Articles::class);
         $articles = $repo->findAll();
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/livre.html.twig', [
             'produit' => $articles,
 
         ]);
     }
 
     
+
+
     /**
      * @Route("/nouveau", name="articles_nouveau", methods={"GET", "POST"})
      */

@@ -35,10 +35,9 @@ class UtilisateurController extends AbstractController
      */
     public function iduser(Utilisateurs $utilisateurs, UtilisateursRepository $utilisateursRepository, Request $request, EntityManagerInterface $manager): Response
     {
-        return $this->render('utilisateur/affichageuser.html.twig',[
+        return $this->render('utilisateur/affichageuser.html.twig', [
             'id' => $utilisateurs->getId(),
             'abonner' => $utilisateurs,
         ]);
     }
-
 }

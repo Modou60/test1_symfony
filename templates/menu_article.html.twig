@@ -3,12 +3,11 @@
 {% block body %}					
 <ul class="dropdown-menu">
     <h3>
-		#<li class="active"><a href="{{ path('biblio') }}"> Accueil </a></li>
-        <li class="active"><a href="{{path('gerarticle')}}"> Liste des Articles </a></li>
-        <li class="active"><a href="{{path('art_affichage')}}"> Lire la suite </a></li>
-        #<li class="active"><a href="#">Modifier un article </a></li>
-
-
+		<li><a href="{{ path('livre') }}"> Livres </a></li>
+        <li><a href="{{ path('categorie') }}"> Liste des Catégorie </a></li>
+          <li><a href="{{ path('art_affichage', {'id':'articles.id'}) }}"> Voir un livre précis </a></li>
+        <li><a href="{{ path('utilisateur') }}"> Voir les utilisateur </a></li>
+        <li><a href="{{ path('user_affichage', {'id':'utilisateurs.id'}) }}"> Voir un utilisateur précis </a></li>
     </h3>
 </ul>
 <hr>
