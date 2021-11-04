@@ -32,16 +32,25 @@ class Articles
      */
     private $date;
 
+    
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image = [];
+    private $image;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $resumé;
+    private $createdAt;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $resume;
+
+    
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -83,27 +92,41 @@ class Articles
         return $this;
     }
 
-    public function getImage(): ?array
+
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?array $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function getResumé(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->resumé;
+        return $this->createdAt;
     }
 
-    public function setResumé(string $resumé): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        $this->resumé = $resumé;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
-}
+
+    public function getResume(): ?string
+    {
+        return $this->resume;
+    }
+
+    public function setResume(?string $resume): self
+    {
+        $this->resume = $resume;
+
+        return $this;
+    }    
+
+    }

@@ -31,6 +31,28 @@ class CategorieController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/nouvelle", name="nouvellecategorie", methods={"GET", "POST"})
+     */
+    public function nouvellecat(Request $request, EntityManagerInterface $em): Response
+    {
+
+       $categorie = new Categorie();
+
+    // je fais un enregistrement manuel
+       $categorie->setTitre(" Titre de ma catégorie");
+       $categorie->setResume(" Résumé de ma catégorie");
+
+       // Je persiste Mon Enregistrement
+       $em->persist($categorie);
+       $em->flush();
+
+       // J'envoie au niveau du temple pour l'enregistrement
+       return $this->render('categorie/nouvellecategorie.html.twig', [
+           'produitcat' => $categorie,
+       ]);
+    }
     /**
      * @Route("/{id}", name="cat_affichage",methods={"GET"})
      */

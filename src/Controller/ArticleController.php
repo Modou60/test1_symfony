@@ -13,19 +13,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
- /**
+/**
  * @Route("/article")
  */
 
 class ArticleController extends AbstractController
 {
-/**
+    /**
      * @Route("/", name="demarrage")
      */
     public function demarrage(): Response
     {
-        return $this->render('article/index.html.twig', [
-        ]);
+        return $this->render('article/index.html.twig', []);
     }
 
 
@@ -43,44 +42,80 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    
-
-
     /**
-     * @Route("/nouveau", name="articles_nouveau", methods={"GET", "POST"})
+     * @Route("/nouvelarticle", name="article.nouvelarticle")
      */
-    public function nouveau(Request $request, EntityManagerInterface $em): Response
+    // Ici on Fait un Enregistrement avec une Formulaire
+
+    public function pageForm(Request $request, EntityManagerInterface $manager)
     {
+        $articles = new Articles(); // Instanciation
 
-       $articles = new Articles();
 
-       // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
-       $articles->setTitre(" Titre de mon Article");
-       $articles->setImage(" photo de mon Article");
-       $articles->setResumé(" Titre de mon Article");
-       $articles->setDate(new  \DateTime());
-       $articles->setContenu(" Contenu de mon Article Contenu de mon ArticleContenu de mon ArticleContenu de mon ArticleContenu de mon Article");
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($articles)
+            ->add('titre')
+            //  ->add('resume')
+            ->add('contenu')
+            ->add('createdAt')
+            ->add('image')
 
-       // Je persiste Mon Enregistrement
-       $em->persist($articles);
-       $em->flush();
+            // Demande le résultat
+            ->getForm();
 
-       // J'envoie au niveau du temple pour l'enregistrement
-       return $this->render('article/artnouveau.html.twig', [
-           'articles' => $articles,
-       ]);
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $manager->persist($articles); 
+        //     $manager->flush();
+
+        //     return $this->redirectToRoute('aarticle.form.page', 
+        //     ['id'=>$articles->getId()]); // Redirection vers la page
+        // }
+
+        $manager->persist($articles);
+        $manager->flush();
+
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('article/new2.html.twig', [
+            'formArticle' => $form->createView()
+        ]);
     }
 
-    // deuxième méthode
+
+    // /**
+    //  * @Route("/nouveau", name="articles_nouveau")
+    //  */
+    // public function nouveau(Request $request, EntityManagerInterface $em): Response
+    // {
+    //    $articles = new Articles();
+
+    //    // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
+    //    $articles->setTitre(" Titre de mon Article");
+    // //    $articles->setImage("");
+    //    $articles->setResumé(" Titre de mon Article");
+    //    $articles->setDate(new  \DateTime());
+    //    $articles->setContenu(" Contenu de mon Article Contenu de mon ArticleContenu de mon ArticleContenu de mon ArticleContenu de mon Article");
+
+    //    // Je persiste Mon Enregistrement
+    //    $em->persist($articles);
+    //    $em->flush();
+
+    //    // J'envoie au niveau du temple pour l'enregistrement
+    //    return $this->render('article/artnouveau.html.twig', [
+    //        'article' => $articles,
+    //    ]);
+    // }
+
     /**
      * @Route("/{id}", name="art_affichage",methods={"GET"})
      */
     public function montrer(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
     {
-        return $this->render('article/affichage.html.twig',[
+        return $this->render('article/affichage.html.twig', [
             'id' => $articles->getId(),
-            'articles' => $articles,
+            'prod' => $articles,
         ]);
     }
-
 }

@@ -19,7 +19,7 @@ class Articlesfixtures extends Fixture
             $articles->setTitre(" Titre de l'article N°$i ")
                     ->setContenu(" Contenu de l'article N° $i ")
                     ->setDate(new \DateTime())
-                    ->setResumé(" Résumé de l'article N° $i ");
+                    ->setResume(" Résumé de l'article N° $i ");
                     $manager->persist($articles);
         $manager->flush();
     }
