@@ -42,6 +42,37 @@ class ArticleController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/form", name="formulaire")
+     */
+    public function formulairePage(Request $request): Response
+    {
+        $livre = new Articles;
+        // créer mon formulaire à partir du type existant
+        $formarticle = $this->createForm(ArticlesType::class);
+        $formarticle->handleRequest($request);
+
+// test pour la validité du formulaire
+        if ($formarticle->isSubmitted() && $formarticle->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($livre);
+            $manager->flush();
+            
+// redirection
+            return $this->redirectToRoute('livre');
+            
+
+        }
+
+       // envoie du formulaire à la page twig
+       return $this->render('article/livreformulaire.html.twig', [
+           'nouvlivre' => $livre,
+           'Articleform' => $formarticle->createView(),
+       ]);   
+    }
+
+
     /**
      * @Route("/nouvelarticle", name="article.nouvelarticle")
      */
@@ -55,7 +86,7 @@ class ArticleController extends AbstractController
         // Creation de mon Formulaire
         $form = $this->createFormBuilder($articles)
             ->add('titre')
-            //  ->add('resume')
+             ->add('resume')
             ->add('contenu')
             ->add('createdAt')
             ->add('image')
@@ -66,13 +97,13 @@ class ArticleController extends AbstractController
         // Analyse des Requetes & Traitement des information 
         $form->handleRequest($request);
 
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $manager->persist($articles); 
-        //     $manager->flush();
+         if ($form->isSubmitted() && $form->isValid()) {
+             $manager->persist($articles); 
+             $manager->flush();
 
-        //     return $this->redirectToRoute('aarticle.form.page', 
-        //     ['id'=>$articles->getId()]); // Redirection vers la page
-        // }
+             return $this->redirectToRoute('article.nouvelarticle', 
+             ['id'=>$articles->getId()]); // Redirection vers la page
+         }
 
         $manager->persist($articles);
         $manager->flush();

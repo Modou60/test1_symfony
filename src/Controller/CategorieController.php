@@ -33,27 +33,100 @@ class CategorieController extends AbstractController
 
 
     /**
-     * @Route("/nouvelle", name="nouvellecategorie", methods={"GET", "POST"})
+     * @Route("/fcategorie", name="fcategorie")
      */
-    public function nouvellecat(Request $request, EntityManagerInterface $em): Response
+    public function formulairecategorie(Request $request): Response
     {
+        // instanciation de la classe Categorie
+        $categorie = new Categorie;
 
-       $categorie = new Categorie();
+        // créer mon formulaire à partir de CategorieType
+        $formcategorie = $this->createForm(CategorieType::class);
+        $formcategorie->handleRequest($request);
 
-    // je fais un enregistrement manuel
-       $categorie->setTitre(" Titre de ma catégorie");
-       $categorie->setResume(" Résumé de ma catégorie");
+// test pour la validité du formulaire
+        if ($formcategorie->isSubmitted() && $formcategorie->isValid()) {
+            // je persiste mes données
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($categorie);
+            $manager->flush();
+            
+// redirection
+            return $this->redirectToRoute('categorie');
+        }
 
-       // Je persiste Mon Enregistrement
-       $em->persist($categorie);
-       $em->flush();
-
-       // J'envoie au niveau du temple pour l'enregistrement
-       return $this->render('categorie/nouvellecategorie.html.twig', [
-           'produitcat' => $categorie,
-       ]);
+       // envoie du formulaire à la page twig pour son affichage
+       return $this->render('categorie/catformulaire.html.twig',[
+           'nouvellecat' => $categorie,
+           'Catform' => $formcategorie->createView(),
+       ]);   
     }
-    /**
+
+
+        /**
+     * @Route("/creercat", name="creer")
+     */
+    // Ici on Fait un Enregistrement avec une Formulaire
+
+    public function pageForm(Request $request, EntityManagerInterface $manager)
+    {
+        $categorie = new Categorie(); // Instanciation
+
+
+        // Création de mon Formulaire
+        $form = $this->createFormBuilder($categorie)
+            ->add('titre')
+             ->add('resume')
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+         if ($form->isSubmitted() && $form->isValid()) {
+             $manager->persist($categorie); 
+             $manager->flush();
+
+             return $this->redirectToRoute('categorie', 
+             [
+                 'id'=>$categorie->getId()]); // Redirection vers la page
+         }
+
+        $manager->persist($categorie);
+        $manager->flush();
+
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('categorie/newcategorie.html.twig', [
+            'formCategorie' => $form->createView()
+        ]);
+    }
+
+
+
+    // /**
+    //  * @Route("/nouvelle", name="nouvellecategorie", methods={"GET", "POST"})
+    //  */
+    // public function nouvellecat(Request $request, EntityManagerInterface $em): Response
+    // {
+
+    //    $categorie = new Categorie();
+
+    // // je fais un enregistrement manuel
+    //    $categorie->setTitre(" Titre de ma catégorie");
+    //    $categorie->setResume(" Résumé de ma catégorie");
+
+    //    // Je persiste Mon Enregistrement
+    //    $em->persist($categorie);
+    //    $em->flush();
+
+    //    // J'envoie au niveau du temple pour l'enregistrement
+    //    return $this->render('categorie/nouvellecategorie.html.twig', [
+    //        'produitcat' => $categorie,
+    //    ]);
+    // }
+
+     /**
      * @Route("/{id}", name="cat_affichage",methods={"GET"})
      */
     public function idcategorie(Categorie $categorie, CategorieRepository $categorieRepository, Request $request, EntityManagerInterface $manager): Response

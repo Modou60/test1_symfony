@@ -30,9 +30,11 @@
 <td>{{categor.id }} </td>
 <td> {{categor.titre}} </td>
 <td>{{ categor.resume }} </td>
-<td> <a href="{{ path('nouvellecategorie')}}"> Ajouter une nouvelle catégorie </a> </td>
 </tr>       
 {% endfor %}
+<tr>
+<td> <a href="{{ path('fcategorie')}}"> Ajouter une nouvelle catégorie </a> </td>
+</tr>
 </tbody>
 </table>
 </div>

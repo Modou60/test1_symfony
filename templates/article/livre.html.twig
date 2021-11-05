@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Gestion des livres!
-{% endblock %}
+{% block title %} Gestion des livres! {% endblock %}
 
 {% block body %}
 	<style>
@@ -49,8 +47,9 @@
 		</table>
 
 		<ul>
-		<li> <a href="{{ path('art_affichage',{'id': 'prod.id'}) }}"> Consulter un livre donné</a> </li>
-							<li> <a href="{{ path('article.nouvelarticle')}}"> Ajouter un nouveau livre </a> </li>				
+			<li><a href="{{ path('art_affichage',{'id': 'prod.id'}) }}">Consulter un livre donné</a></li>
+			{# <li><a href="{{ path('article.nouvelarticle')}}">Ajouter un nouveau livre</a></li> #}
+			<li><a href="{{ path('formulaire')}}">Ajouter un nouveau livre via formulaire type</a></li>
 		</ul>
 
 	</div>
