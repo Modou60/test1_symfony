@@ -27,8 +27,6 @@ class Categorie
      */
     private $resume;
 
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -57,8 +55,4 @@ class Categorie
 
         return $this;
     }
-
-
-    
-
 }

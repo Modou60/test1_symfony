@@ -30,6 +30,37 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/formutilisateur", name="formutilisateur")
+     */
+    public function foruser(Request $request, EntityManagerInterface $manager)
+    {
+    
+        // Instanciation de la classe Utilisateurs
+    $utilisateur = new Utilisateurs;
+
+    // création d'un formulaire à partir de UtilisateursType
+    $formutilisateur = $this->createForm(UtilisateursType::class);
+$formutilisateur->handleRequest($request);
+
+// Teste pour la soumission du formulaire
+if ($formutilisateur->isSubmitted() && $formutilisateur->isValid())
+{
+    $manager->persist($utilisateur);
+    $manager->flush();
+
+    // Redirection vers la page de la liste de tous les utilisateurs
+    return $this->redirectToRoute('utilisateur');
+}
+
+// envoie de du formulaire à la page twig pour son affichage
+return $this->render('utilisateur/nouvelutilisateur.html.twig',[
+    'nouveau' => $utilisateur,
+    'userform' => $formutilisateur->createView(),
+]);
+}
+
     /**
      * @Route("/{id}", name="user_affichage",methods={"GET"})
      */

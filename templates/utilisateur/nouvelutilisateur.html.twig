@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %} l'enregistrement d'un nouvel utilisateur {% endblock %}
+
+{% block body %}
+
+<h1> Remplissez correctement ce formulaire pour ajouter un nouvel utilisateur </h1>
+
+<br/><br/>
+<hr/>
+<br/<br/>
+
+{{ form_start(userform)}}
+Nom : {{ form_widget(userform.nom) }} <br/>
+Prénom : {{ form_widget(userform.Prénom) } <br/>
+Date de naissance : {{ form_widget(userform.dateNaissance) }}<br/>
+Login : {{ form_widget(userform.Login) }}<br/>
+Mot de passe : {{ form_widget(userform.passWord) }} <br/>
+Adresse : {{ form_widget(userform.Adresse) }} <br/>
+Email : {{ form_widget(userform.Email) }} <br/>
+Photo : {{ form_widget(userform.Photo) }} <br/>
+Rôle : {{ form_widget(userform.role) }} <br/>
+<br/>
+
+<button tupe="sumit" class="btn btn-success"> Valider le formulaire </button>
+{{ form_end(userform ) }}
+{% endblock %}
