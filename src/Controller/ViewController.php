@@ -104,12 +104,7 @@ class ViewController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/boucle", name="index_boucle")
-     */
-    public function boucle(): Response
-    {
-    }
+
 
     /**
      * @Route("/operation", name="index_operation")

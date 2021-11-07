@@ -41,7 +41,7 @@ class CategorieController extends AbstractController
         $categorie = new Categorie;
 
         // créer mon formulaire à partir de CategorieType
-        $formcategorie = $this->createForm(CategorieType::class);
+        $formcategorie = $this->createForm(CategorieType::class, $categorie);
         $formcategorie->handleRequest($request);
 
 // test pour la validité du formulaire

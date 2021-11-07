@@ -44,16 +44,16 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/form", name="formulaire")
+     * @Route("/formulaire", name="formulaire")
      */
     public function formulairePage(Request $request): Response
     {
         $livre = new Articles;
         // créer mon formulaire à partir du type existant
-        $formarticle = $this->createForm(ArticlesType::class);
+        $formarticle = $this->createForm(ArticlesType::class, $livre);
         $formarticle->handleRequest($request);
 
-// test pour la validité du formulaire
+// test pour la validité du formulaire et sa persistance
         if ($formarticle->isSubmitted() && $formarticle->isValid()) {
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($livre);

@@ -17,7 +17,7 @@ class Location
      */
     private $id;
 
-    /**
+   /**
      * @ORM\Column(type="date")
      */
     private $date;
@@ -32,11 +32,7 @@ class Location
      */
     private $categorie;
 
-    /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $image = [];
-
+    
     /**
      * @ORM\Column(type="text")
      */
@@ -61,6 +57,11 @@ class Location
      * @ORM\Column(type="boolean")
      */
     private $alaune;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -103,18 +104,7 @@ class Location
         return $this;
     }
 
-    public function getImage(): ?array
-    {
-        return $this->image;
-    }
-
-    public function setImage(?array $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
+    
     public function getDescription(): ?string
     {
         return $this->description;
@@ -171,6 +161,18 @@ class Location
     public function setAlaune(bool $alaune): self
     {
         $this->alaune = $alaune;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

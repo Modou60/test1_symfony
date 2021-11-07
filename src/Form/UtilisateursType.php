@@ -21,7 +21,8 @@ class UtilisateursType extends AbstractType
             ->add('adresse')
             ->add('email')
             ->add('photo')
-            ->add('role'); 
+            ->add('role')
+            ; 
         }
 
     public function configureOptions(OptionsResolver $resolver): void
