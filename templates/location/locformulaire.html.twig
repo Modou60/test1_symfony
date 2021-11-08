@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %} l'enregistrement d'une nouvelle location{% endblock %}
+
+{% block body %}
+
+<h1> Remplissez correctement ce formulaire pour enregistrer une nouvelle location</h1>
+
+<br/><br/>
+<hr/>
+<br/<br/>
+
+{{ form_start(locationform)}}
+Date : {{ form_widget(locationform.date) }} <br/>
+Titre : {{ form_widget(locationform.titre) } <br/>
+Catégorie: {{ form_widget(locationform.categorie) }}<br/>
+Description: {{ form_widget(locationform.description) }}<br/>
+Valeur : {{ form_widget(locationform.valeur) }} <br/>
+Adresse : {{ form_widget(locationform.Adresse) }} <br/>
+Accessibility : {{ form_widget(locationform.accessibility) }} <br/>
+à la une : {{ form_widget(locationform.alaune) }} <br/>
+image : {{ form_widget(locationform.image) }} <br/>
+<br/>
+
+<button tupe="sumit" class="btn btn-success"> Valider le formulaire </button>
+{{ form_end(locationform ) }}
+{% endblock %}

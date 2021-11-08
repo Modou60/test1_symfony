@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} La page des locations! {% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    
+    <h1>bienvenu(e) à la page des locations </h1>
+<br/><br/>
+<hr/>
+<br/>
+
+<table border="1">
+<tbody>
+<thead>
+<tr>
+<tr>
+<th> id </th>
+<th> Date </th>
+<th> Titre </th>
+<th> Catégorie </th>
+<th> Description </th>
+<th> Valeur </th>
+<th> Adresse </th>
+<th> Accessibilitéy </th>
+<th> à la une </th>
+<th> image </th>
+</tr>
+{% for loc in location %}
+<tr>
+<td> {{ loc.id }}</td>
+<td> {{ loc.date }}</td>
+<td> {{ loc.titre }}</td>
+<td> {{ loc.caterie }}</td>
+<td> {{ loc.description }}</td>
+<td> {{ loc.valeur }}</td>
+<td> {{ loc.adresse }}</td>
+<td> {{ loc.accessibility }}</td>
+<td> {{ loc.alaune }}</td>
+<td> {{ loc.image }}</td>
+</tr>
+</tbody>
+</table>
+    
+    <ul>
+    <li> <a href="{{ path('locform')}}"> Enregistrer une nouvelle location </a> </li>    
+
+    </ul>
+</div>
+{% endblock %}
