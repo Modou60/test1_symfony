@@ -27,14 +27,10 @@
 		</div>
 		<table class="table" border="1">
 			<tbody>
-				{% for article in produit %}
+				{% for article in articles %}
 					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
 					<tr>
-						<td>{{ article.id }}
-						</td>
-						<td>{{ article.titre }}
-						</td>
-						<td>{{ article.contenu }}
+						<td><a href="{{ path('article_id', {'id':article.id}) }}"> Voir les détail l'id n° {{article.id}} </a>
 						</td>
 					</tr>
 				{% else %}
@@ -47,9 +43,10 @@
 		</table>
 
 		<ul>
-			<li><a href="{{ path('art_affichage',{'id': 'prod.id'}) }}">Consulter un livre donné</a></li>
+			{# <li><a href="{{ path('art_affichage',{'id': 'prod.id'}) }}">Consulter un livre donné</a></li> #}
 			{# <li><a href="{{ path('article.nouvelarticle')}}">Ajouter un nouveau livre</a></li> #}
 			<li><a href="{{ path('formulaire')}}">Ajouter un nouveau livre via formulaire type</a></li>
+			<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a> </li>
 		</ul>
 
 	</div>

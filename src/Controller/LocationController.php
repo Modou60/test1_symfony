@@ -30,8 +30,7 @@ class LocationController extends AbstractController
 
         // envoi vers la page twig pour être affichée
         return $this->render('location/index.html.twig', [
-            'location' => $location,
-            
+            'locations' => $location,            
         ]);
     }
 
@@ -40,17 +39,17 @@ class LocationController extends AbstractController
      */
     public function formlocation(Request $request): Response
     {
-        $location = new Location
+        $location = new Location;
 
         // création d'un formulaire
-        $formlocation = $this->createForm(LocationType::class, $location);
-        $formlocation->handleRequest($request)
+        $formlocation = $this->createForm(LocationType::class);
+        $formlocation->handleRequest($request);
 
         // test pour la validité du formulaire et sa persistance
         if ($formlocation->isSubmitted() && $formlocation->isValid())
         {
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($location);
+           $manager->persist($location);
             $manager->flush();
 
             // redirection de la page après persistance
@@ -63,5 +62,16 @@ class LocationController extends AbstractController
             'locationform' => $formlocation->createView(),
         ]);
 
+    }
+
+    // affichage d'une location donnée
+    /**
+     * @Route("/{id}", name="location_id", methods={"GET"})
+     */
+    public function idlocation(Location $location)
+    {
+return $this->render('location/affichelocation.html.twig',[
+    'loc' => $location,
+]);
     }
 }

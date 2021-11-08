@@ -15,7 +15,7 @@
 		<br/><br/>
 
 		<table class="table" border="1">
-			<tbody></tbody>
+			<tbody>
 			<thead>
 				<tr>
 					<th>
@@ -52,18 +52,22 @@
 			</thead>
 
 			<tr>
-				<td>{{abonner.id}}</td>
-				<td>{{abonner.nom}}</td>
-				<td>{{abonner.prenom}}</td>
-				<td>{{abonner.dateNaissance|date("d/m/Y")}}</td>
-				<td>{{abonner.photo}}</td>
-				<td>{{abonner.login}}</td>
-				<td>{{abonner.passWord}}</td>
-				<td>{{abonner.adresse}}</td>
-				<td>{{abonner.email}}</td>
-				<td>{{abonner.role}}</td>
+				<td>{{abonne.id}}</td>
+				<td>{{abonne.nom}}</td>
+				<td>{{abonne.prenom}}</td>
+				<td>{{abonne.dateNaissance|date("d/m/Y")}}</td>
+				<td>{{abonne.photo}}</td>
+				<td>{{abonne.login}}</td>
+				<td>{{abonne.passWord}}</td>
+				<td>{{abonne.adresse}}</td>
+				<td>{{abonne.email}}</td>
+				<td>{{abonne.role}}</td>
 			</tr>
 		</tbody>
 	</table>
+	<ul>
+	<li> <a href="{{ path('utilisateur') }}"> Revenir à la page des utilisateurs </a> </li>
+	<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a> </li>
+	</ul>
 </div>
 {% endblock %}

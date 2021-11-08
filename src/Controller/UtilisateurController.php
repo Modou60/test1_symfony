@@ -26,7 +26,7 @@ class UtilisateurController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Utilisateurs::class);
         $utilisateur = $repo->findAll();
         return $this->render('utilisateur/index.html.twig', [
-            'user' => $utilisateur,
+            'utilisateurs' => $utilisateur,
         ]);
     }
 
@@ -63,13 +63,13 @@ return $this->render('utilisateur/nouvelutilisateur.html.twig',[
 }
 
     /**
-     * @Route("/{id}", name="user_affichage",methods={"GET"})
+     * @Route("/{id}", name="utilisateur_id",methods={"GET"})
      */
-    public function iduser(Utilisateurs $utilisateurs, UtilisateursRepository $utilisateursRepository, Request $request, EntityManagerInterface $manager): Response
+    public function iduser(Utilisateurs $utilisateurs): Response
     {
         return $this->render('utilisateur/affichageuser.html.twig', [
-            'id' => $utilisateurs->getId(),
-            'abonner' => $utilisateurs,
+            
+            'abonne' => $utilisateurs,
         ]);
     }
 }

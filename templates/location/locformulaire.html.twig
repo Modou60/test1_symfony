@@ -10,8 +10,8 @@
 <hr/>
 <br/<br/>
 
-{{ form_start(locationform)}}
-Date : {{ form_widget(locationform.date) }} <br/>
+{{ form_start(locationform) }}
+Date : {{ form_widget(locationform.date|date("d/m/Y")) }} <br/>
 Titre : {{ form_widget(locationform.titre) } <br/>
 Catégorie: {{ form_widget(locationform.categorie) }}<br/>
 Description: {{ form_widget(locationform.description) }}<br/>

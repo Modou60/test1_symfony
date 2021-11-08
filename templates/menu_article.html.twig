@@ -1,14 +1,14 @@
 {% block title %}{% endblock %}
 
 {% block body %}					
+
 <ul class="dropdown-menu">
-    <h3>
+    
 		<li><a href="{{ path('livre') }}"> Livres </a></li>
         <li><a href="{{ path('categorie') }}"> Liste des Catégorie </a></li>
-          <li><a href="{{ path('art_affichage', {'id':'prod.id'}) }}"> Voir un livre précis </a></li>
+        <li><a href="{{ path('location') }}"> Aller à la page des locations </a></li>
         <li><a href="{{ path('utilisateur') }}"> Voir les utilisateur </a></li>
-        <li><a href="{{ path('user_affichage', {'id':'abonner.id'}) }}"> Voir un utilisateur précis </a></li>
-    </h3>
+    
 </ul>
-<hr>
+
 {% endblock %}

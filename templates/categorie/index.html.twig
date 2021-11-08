@@ -17,7 +17,7 @@
 
 <table border="1">
 <tbody>
-{% for categor in categorie %}
+{% for categorie in categories %}
 <thead>
 <tr>
 <th> id </th>
@@ -27,15 +27,17 @@
 </thead>
 
 <tr>
-<td>{{categor.id }} </td>
-<td> {{categor.titre}} </td>
-<td>{{ categor.resume }} </td>
+<td><a href="{{ path('cat_id', {'id':categorie.id }) }}"> Voir les détail l'id n° {{categorie.id}} </a></td>
 </tr>       
 {% endfor %}
-<tr>
-<td> <a href="{{ path('fcategorie')}}"> Ajouter une nouvelle catégorie </a> </td>
-</tr>
 </tbody>
 </table>
+
+<br/><br/>
+
+<ul>
+<li> <a href="{{ path('fcategorie')}}"> Ajouter une nouvelle catégorie </a> </li>
+<li> <a href="{{ path('demarrage')}}"> Revenir à la page d'accueil </a> </li>
+</ul>
 </div>
 {% endblock %}

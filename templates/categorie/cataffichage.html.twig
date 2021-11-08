@@ -21,10 +21,17 @@
 </thead>
 
 <tr>
-<td>{{ refcat.id }}</td>
-<td>{{ refcat.titre }}</td>
-<td>{{ refcat.resume }}</td>
+<td>{{ categor.id }}</td>
+<td>{{ categor.titre }}</td>
+<td>{{ categor.resume }}</td>
 </tr>
 </tbody>
 </table>
+
+<br/><br/>
+
+<ul>
+<li> <a href="{{ path('categorie')}}"> revenir à la page des catégorie </a> </li>
+<li> <a href="{{ path('demarrage')}}"> Revenir à la page d'accueil </a> </li>
+</ul>
 {% endblock %}

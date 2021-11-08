@@ -25,7 +25,7 @@
 
 		<table border="1">
 			<tbody>
-				{% for abonne in user %}
+				{% for utilisateur in utilisateurs %}
 
 					<thead>
 						<tr>
@@ -64,36 +64,37 @@
 
 					<tr>
 						<td>
-							{{ abonne.id }}
+<a href="{{ path('utilisateur_id', {'id':utilisateur.id}) }}"> Voir les détails de l'utilisateur numéro {{ utilisateur.id }} </a>
+						</td>
+						{# <td>
+							{{ utilisateur.nom }}
 						</td>
 						<td>
-							{{ abonne.nom }}
+							{{ utilisateur.prenom }}
 						</td>
 						<td>
-							{{ abonne.prenom }}
+							{{ utilisateur.dateNaissance|date("d/m/Y") }}
 						</td>
 						<td>
-							{{ abonne.dateNaissance|date("d/m/Y") }}
+							{{ utilisateur.login }}
 						</td>
 						<td>
-							{{ abonne.login }}
+							{{ utilisateur.passWord }}
 						</td>
 						<td>
-							{{ abonne.passWord }}
+							{{ utilisateur.adresse }}
 						</td>
 						<td>
-							{{ abonne.adresse }}
+							{{ utilisateur.email }}
 						</td>
 						<td>
-							{{ abonne.email }}
+							{{ utilisateur.photo }}
 						</td>
 						<td>
-							{{ abonne.photo }}
-						</td>
-						<td>
-							{{ abonne.role }}
-						</td>
-					</tr>
+							{{ utilisateur.role }}
+						</td> #}
+
+					</tr> 
 				{% endfor %}
 
 			</tbody>
@@ -101,8 +102,9 @@
 
 <br/><br/>
 <ul>
-<li> <a href="{{ path('user_affichage',{'id':'abonner.id'})}}"> Voir un utilisateur donné </a></li>
+{# <li> <a href="{{ path('user_affichage',{'id':'abonner.id'}) }}"> Voir un utilisateur donné </a></li> #}
 <li> <a href="{{ path('formutilisateur') }}"> Ajouter un utilisateur </a></li>
+<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a></li>
 </ul>
 	</div>
 {% endblock %}

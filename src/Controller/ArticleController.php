@@ -35,10 +35,9 @@ class ArticleController extends AbstractController
     public function livre(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Articles::class);
-        $articles = $repo->findAll();
+        $produit = $repo->findAll();
         return $this->render('article/livre.html.twig', [
-            'produit' => $articles,
-
+            'articles' => $produit,
         ]);
     }
 
@@ -140,13 +139,13 @@ class ArticleController extends AbstractController
     // }
 
     /**
-     * @Route("/{id}", name="art_affichage",methods={"GET"})
+     * @Route("/{id}", name="article_id",methods={"GET"})
      */
-    public function montrer(Articles $articles, ArticlesRepository $articlesRepository, Request $request, EntityManagerInterface $manager): Response
+    public function montrer(Articles $articles): Response
     {
         return $this->render('article/affichage.html.twig', [
-            'id' => $articles->getId(),
-            'prod' => $articles,
+            
+            'articles' => $articles,
         ]);
     }
 }

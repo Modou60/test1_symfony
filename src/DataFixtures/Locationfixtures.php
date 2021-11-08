@@ -17,11 +17,11 @@ class Locationfixtures extends Fixture
             $location = new Location;
 $accessibility = ["Validée", "En attente", "Anulée"];
 shuffle($accessibility);
-            $location->setDate("date \DateTime")
+            $location->setDate(new \DateTime())
                 ->setTitre(" Titre de la location n° $i")
                 ->setCategorie(" Catégorie de la location n° $i ")
                 ->setDescription(" Description de la location n° $i ")                
-                ->setValeur(" Valeur de la location n° $i ")                
+                ->setValeur(mt_rand(0,1000))                
                 ->setAdresse(" l'adresse de la location n° $i ")                
                 ->setAccessibility($accessibility[0])                
                 ->setAlaune(" La une de la location n° $i")                

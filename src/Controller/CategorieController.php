@@ -27,7 +27,7 @@ class CategorieController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Categorie::class);
         $cat = $repo->findAll();
         return $this->render('categorie/index.html.twig', [
-            'categorie' => $cat,
+            'categories' => $cat,
         ]);
     }
 
@@ -66,7 +66,7 @@ class CategorieController extends AbstractController
         /**
      * @Route("/creercat", name="creer")
      */
-    // Ici on Fait un Enregistrement avec une Formulaire
+    // Ici on Fait un Enregistrement avec un Formulaire
 
     public function pageForm(Request $request, EntityManagerInterface $manager)
     {
@@ -126,14 +126,14 @@ class CategorieController extends AbstractController
     //    ]);
     // }
 
-     /**
-     * @Route("/{id}", name="cat_affichage",methods={"GET"})
+    /**
+     * @Route("/{id}", name="cat_id", methods={"GET"})
      */
-    public function idcategorie(Categorie $categorie, CategorieRepository $categorieRepository, Request $request, EntityManagerInterface $manager): Response
+
+    public function idcategorie(Categorie $categorie)
     {
-        return $this->render('categorie/cataffichage.html.twig',[
-            'id' => $categorie->getId(),
-            'refcat' => $categorie,
+        return $this->render('categorie/cataffichage.html.twig',[ 
+            'categor' => $categorie,
         ]);
     }
 
