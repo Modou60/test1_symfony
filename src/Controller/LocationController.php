@@ -29,7 +29,7 @@ class LocationController extends AbstractController
         $location = $repo->findAll();
 
         // envoi vers la page twig pour être affichée
-        return $this->render('location/index.html.twig', [
+        return $this->render('location/index.html.twig',[
             'locations' => $location,            
         ]);
     }
@@ -42,7 +42,7 @@ class LocationController extends AbstractController
         $location = new Location;
 
         // création d'un formulaire
-        $formlocation = $this->createForm(LocationType::class);
+        $formlocation = $this->createForm(LocationType::class, $location);
         $formlocation->handleRequest($request);
 
         // test pour la validité du formulaire et sa persistance
@@ -58,7 +58,7 @@ class LocationController extends AbstractController
 
         // envoi de la page vers twig pour son affichage
         return $this->render('location/locformulaire.html.twig',[
-            'nouvelleloc' => $location,
+            'locations' => $location,
             'locationform' => $formlocation->createView(),
         ]);
 

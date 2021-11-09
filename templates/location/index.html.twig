@@ -17,6 +17,7 @@
 
 <table border="1">
 <tbody>
+
 <thead>
 <tr>
 <th> id </th>
@@ -31,10 +32,10 @@
 <th> image </th>
 </tr>
 </thead>
-
 {% for location in locations %}
+
 <tr>
-<td> <a href="{{ path('location_id',{'id':location.id})}}"> Voir la location numéro {{ location.id }} </a></td>
+<td> <a href="{{ path('location_id', {'id':location.id})}}"> Voir la location numéro {{ location.id }} </a></td>
 </tr>
 {% endfor %}
 </tbody>

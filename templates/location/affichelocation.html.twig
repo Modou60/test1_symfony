@@ -1,17 +1,45 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Affichage de la location {{ location.id }} {% endblock %}
+{% block title %} Affichage d'une location donnée {% endblock %}
 
 {% block body %}
 <div>
-<h1> L'affichage d'une location donnée </h1>
+<h1> L'affichage de location numéro {{ loc.id }} </h1>
 
 <br/><br/>
 <hr/>
 <br/>
 
 <table border="1">
+<tbody>
+<thead>
+<tr>
+<th> id </th>
+<th> Date </th>
+<th> Titre </th>
+<th> Catégorie </th>
+<th> Description </th>
+<th> Valeur </th>
+<th> Adresse </th>
+<th> Accessibilité </th>
+<th> alaune </th>
+<th> image </th>
+</tr>
+</thead>
 
+<tr>
+<td> {{ loc.id }} </td>
+<td> {{ loc.date|date("d/m/Y") }} </td>
+<td> {{ loc.titre }} </td>
+<td> {{ loc.categorie }} </td>
+<td> {{ loc.description }} </td>
+<td> {{ loc.valeur }} </td>
+<td> {{ loc.adresse }} </td>
+<td> {{ loc.accessibility }} </td>
+<td> {{ loc.alaune }} </td>
+<td> {{ loc.image }} </td>
+</tr>
+</tbody>
 </table>
 </div>
 {% endblock %}
