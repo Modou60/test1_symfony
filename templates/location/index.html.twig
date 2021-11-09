@@ -16,7 +16,6 @@
 <br/>
 
 <table border="1">
-<tbody>
 
 <thead>
 <tr>
@@ -29,12 +28,25 @@
 <th> Adresse </th>
 <th> Accessibilitéy </th>
 <th> à la une </th>
-<th> image </th>
+<th> Image </th>
+<th> Action </th>
 </tr>
 </thead>
+
+<tbody>
 {% for location in locations %}
 
 <tr>
+<td> {{ location.id }} </td>
+<td> {{ location.date|date("D/M/Y") }} </td>
+<td> {{ location.titre }} </td>
+<td> {{ location.categorie }} </td>
+<td> {{ location.description }} </td>
+<td> {{ location.valeur }} </td>
+<td> {{ location.adresse }} </td>
+<td> {{ location.accessibility }} </td>
+<td> {{ location.alaune }} </td>
+<td> {{ location.image }} </td>
 <td> <a href="{{ path('location_id', {'id':location.id})}}"> Voir la location numéro {{ location.id }} </a></td>
 </tr>
 {% endfor %}

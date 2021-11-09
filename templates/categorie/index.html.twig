@@ -23,12 +23,16 @@
 <th> id </th>
 <th> titre </th>
 <th> resume </th>
+<th> Action </th>
 </tr>
 </thead>
 
 <tr>
+<td> {{ categorie.id}} </td>
+<td> {{ categorie.titre}} </td>
+<td> {{ categorie.resume}} </td>
 <td><a href="{{ path('cat_id', {'id':categorie.id }) }}"> Voir les détail l'id n° {{categorie.id}} </a></td>
-</tr>       
+</tr>
 {% endfor %}
 </tbody>
 </table>

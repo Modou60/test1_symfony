@@ -29,43 +29,33 @@
 
 					<thead>
 						<tr>
-							<th>
-								id
-							</th>
-							<th>
-								nom
-							</th>
-							<th>
-								prenom
-							</th>
-							<th>
-								photo
-							</th>
-							<th>
-								dateNaissance
-							</th>
-							<th>
-								login
-							</th>
-							<th>
-								passWord
-							</th>
-							<th>
-								adresse
-							</th>
-							<th>
-								email
-							</th>
-							<th>
-								role
-							</th>
+							<th> id </th>
+							<th> nom </th>
+							<th> prenom </th>
+							<th> photo </th>
+							<th> dateNaissance </th>
+							<th> login </th>
+							<th> passWord </th>
+							<th> adresse </th>
+							<th> email </th>
+							<th>role</th>
+							<th> action </th>
 						</tr>
 					</thead>
 
 					<tr>
-						<td>
-<a href="{{ path('utilisateur_id', {'id':utilisateur.id}) }}"> Voir les détails de l'utilisateur numéro {{ utilisateur.id }} </a>
-						</td>
+					<td> {{ utilisateur.id }} </td>
+							<td> {{ utilisateur.nom }} </td>
+							<td> {{ utilisateur.prenom }}</td>
+							<td> {{ utilisateur.photo }} </td>
+							<td>{{ utilisateur.dateNaissance|date("d/m/Y") }}</td>
+							<td> {{ utilisateur.login }} </td>
+							<td> {{ utilisateur.passWord }}</td>
+							<td> {{ utilisateur.adresse }} </td>
+							<td> {{ utilisateur.email }} </td>
+							<td> {{ utilisateur.role }} </td>
+
+							<td><a href="{{ path('utilisateur_id', {'id':utilisateur.id}) }}"> Voir les détails de l'utilisateur numéro {{ utilisateur.id }} </a></td>
 					</tr> 
 				{% endfor %}
 

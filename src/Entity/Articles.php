@@ -32,7 +32,6 @@ class Articles
      */
     private $date;
 
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -42,10 +41,7 @@ class Articles
      * @ORM\Column(type="text")
      */
     private $resume;
-
-
-
-
+	
     public function getId(): ?int
     {
         return $this->id;

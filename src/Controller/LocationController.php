@@ -30,7 +30,7 @@ class LocationController extends AbstractController
 
         // envoi vers la page twig pour être affichée
         return $this->render('location/index.html.twig',[
-            'locations' => $location,            
+            'locations' => $location,
         ]);
     }
 
