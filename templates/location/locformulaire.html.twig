@@ -11,15 +11,15 @@
 <br/<br/>
 
 {{ form_start(locationform) }}
-Date : {{ form_widget(locationform.date|date("d/m/Y")) }} <br/>
-Titre : {{ form_widget(locationform.titre) } <br/>
-Catégorie: {{ form_widget(locationform.categorie) }}<br/>
-Description: {{ form_widget(locationform.description) }}<br/>
-Valeur : {{ form_widget(locationform.valeur) }} <br/>
-Adresse : {{ form_widget(locationform.Adresse) }} <br/>
-Accessibility : {{ form_widget(locationform.accessibility) }} <br/>
-à la une : {{ form_widget(locationform.alaune) }} <br/>
-image : {{ form_widget(locationform.image) }} <br/>
+ {{ form_widget(locationform.date|date("d/m/Y")) }} <br/>
+ {{ form_widget(locationform.titre) }} <br/>
+ {{ form_widget(locationform.categorie) }}<br/>
+ {{ form_widget(locationform.description) }}<br/>
+ {{ form_widget(locationform.valeur) }} <br/>
+ {{ form_widget(locationform.Adresse) }} <br/>
+ {{ form_widget(locationform.accessibility) }} <br/>
+ {{ form_widget(locationform.alaune) }} <br/>
+ {{ form_widget(locationform.image) }} <br/>
 <br/>
 
 <button tupe="sumit" class="btn btn-success"> Valider le formulaire </button>
