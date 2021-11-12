@@ -3,7 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Articles;
+
+use Doctrine\DBAL\Types\StringType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,10 +20,10 @@ class ArticlesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre')
-            ->add('resume')
-            ->add('contenu')
-            ->add('date')
+            ->add('titre', StringType::class)
+            ->add('resume', TextareaType::class)
+            ->add('contenu', TextareaType::class)
+            ->add('date', DateTime::class)
             ->add('image');
     }
 

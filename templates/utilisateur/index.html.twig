@@ -25,7 +25,7 @@
 
 		<table border="1">
 			<tbody>
-				{% for utilisateur in utilisateurs %}
+				
 
 					<thead>
 						<tr>
@@ -42,7 +42,8 @@
 							<th> action </th>
 						</tr>
 					</thead>
-
+					
+{% for utilisateur in utilisateurs %}
 					<tr>
 					<td> {{ utilisateur.id }} </td>
 							<td> {{ utilisateur.nom }} </td>

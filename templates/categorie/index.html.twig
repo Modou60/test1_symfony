@@ -17,7 +17,7 @@
 
 <table border="1">
 <tbody>
-{% for categorie in categories %}
+
 <thead>
 <tr>
 <th> id </th>
@@ -27,6 +27,7 @@
 </tr>
 </thead>
 
+{% for categorie in categories %}
 <tr>
 <td> {{ categorie.id}} </td>
 <td> {{ categorie.titre}} </td>

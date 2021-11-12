@@ -7,6 +7,7 @@ use App\Form\LocationType;
 use App\Repository\LocationRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +39,7 @@ class LocationController extends AbstractController
 /**
  * @Route("/locform", name="locform")
  */
-public function formlocation(Request $request, EntityManagerInterface $entityManagerInterface, EntityManager $manager): Response
+public function formlocation(Request $request, ObjectManager $manager): Response
 {
     // instanciation de la classe Location
     $location = new Location;

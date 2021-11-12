@@ -27,7 +27,7 @@
 		</div>
 		<table class="table" border="1">
 			<tbody>
-				{% for article in articles %}
+				
 					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
 
 					<thead>
@@ -41,6 +41,9 @@
 					<th> Action </th>
 					</tr>
 					</thead>
+
+					{% for article in articles %}
+					
 					<tr>
 					<td> {{ article.id }} </td>
 					<td> {{ article.titre }} </td>
