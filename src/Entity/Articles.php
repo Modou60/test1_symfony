@@ -4,12 +4,20 @@ namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
  */
 class Articles
 {
+    /**
+     * @Ass'ert/NotBlank
+     */
+    /**
+     * @Assert\Type("\DateTime")
+     */
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Bienvenu(e) à la page de formulaire d'une nouvelle catégorie {% endblock %}
+
+{% block body %}
+
+<h1> Prenez le soin de bien le remplir! </h1>
+
+<br/><br/>
+<hr/>
+<br/><br/>
+
+{{ form_start(formedit)}}
+Titre : {{ form_widget(formedit.titre)}} <br/>
+Résumé : {{ form_widget(formedit.resume)}} <br/>
+
+<button type="submit" class="btn btn-success"> Valider le formulaire </button>
+{{ form_end(formedit) }}
+{% endblock %}

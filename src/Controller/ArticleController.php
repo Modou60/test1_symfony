@@ -8,11 +8,12 @@ use App\Repository\ArticlesRepository;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use SebastianBergmann\CodeCoverage\Report\Html\Renderer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 /**
  * @Route("/article")
  */
@@ -148,4 +149,31 @@ class ArticleController extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+
+
+/**
+ * @route("/{id}/edit", name="edit_modifier", methods={"GET", "POST"})
+ */
+public function edit(Request $request, Articles $articles, EntityManagerInterface $manager)
+{
+    $formedit = $this->createForm(ArticlesType::class, $articles);
+    $formedit->handleRequest($request);
+
+    // test de la validité
+    if ($formedit->isSubmitted() && $formedit->isValid())
+    {
+        $manager->flush();
+        // redirection de la page
+        return $this->redirectToRoute('livre');
+    }
+    
+    
+    // envoi de la page vers twig
+    return $this->render('article/livreformulaire.html.twig', [
+         'form' => $articles,
+        'formedit' => $formedit->createView(),
+    ]);
+    
+}
 }

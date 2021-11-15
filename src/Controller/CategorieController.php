@@ -137,6 +137,57 @@ class CategorieController extends AbstractController
         ]);
     }
 
+/**
+ * @route("/{id}/edit", name="edit_categorie", methods={"GET", "POST"})
+ */
+public function edit(Request $request, Categorie $categorie, EntityManagerInterface $manager)
+{
+    $formedit = $this->createForm(CategorieType::class, $categorie);
+    $formedit->handleRequest($request);
+
+    // test de la validité
+    if ($formedit->isSubmitted() && $formedit->isValid())
+    {
+        $manager->flush();
+        // redirection de la page
+        return $this->redirectToRoute('categorie');
+    }
+    
+    
+    // envoi de la page vers twig
+    return $this->render('categorie/catform.html.twig', [
+         'form' => $categorie,
+        'formedit' => $formedit->createView(),
+    ]);
+    
+}
+
+/**
+ * @route("/{id}/del", name="del_categorie", methods={"GET", "POST"})
+ */
+public function supprimer(Request $request, Categorie $categorie, EntityManagerInterface $manager)
+{
+    $formedit = $this->createForm(CategorieType::class, $categorie);
+    $formedit->handleRequest($request);
+
+    // test de la validité
+    if ($formedit->isSubmitted() && $formedit->isValid())
+    {
+        $manager->remove($categorie);
+        $manager->flush();
+        // redirection de la page
+        return $this->redirectToRoute('categorie');
+    }
+    
+    
+    // envoi de la page vers twig
+    return $this->render('categorie/catform.html.twig', [
+         'form' => $categorie,
+        'formedit' => $formedit->createView(),
+    ]);
+    
+}
+
 
 
 }

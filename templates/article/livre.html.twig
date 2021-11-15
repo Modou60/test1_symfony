@@ -52,7 +52,7 @@
 					<td> {{ article.image }} </td>
 					<td> {{ article.resume }} </td>
 
-						<td><a href="{{ path('article_id', {'id':article.id}) }}"> Voir les détail l'id n° {{article.id}} </a>
+						<td><a href="{{ path('edit_modifier', {'id': article.id}) }}"> Modifier un article l'id n° {{article.id}} </a>
 						</td>
 					</tr>
 				{% else %}
@@ -65,10 +65,12 @@
 		</table>
 
 		<ul>
+		{# <li> <a href="{{ path('edit_modifier') }}"> Modifier un article</a> </li> #}
 			{# <li><a href="{{ path('art_affichage',{'id': 'prod.id'}) }}">Consulter un livre donné</a></li> #}
 			{# <li><a href="{{ path('article.nouvelarticle')}}">Ajouter un nouveau livre</a></li> #}
 			<li><a href="{{ path('formulaire')}}">Ajouter un nouveau livre via formulaire type</a></li>
 			<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a> </li>
+			
 		</ul>
 
 	</div>

@@ -11,15 +11,15 @@
 <hr/>
 <br/><br/>
 
-{{ form_start(Articleform) }}
-Titre : {{ form_widget(Articleform.titre) }} <br/>
-Résumé : {{ form_widget(Articleform.resume) }} <br/>
-Contenu : {{ form_widget(Articleform.contenu) }} <br/>
-Image : {{ form_widget(Articleform.image) }} <br/>
-Date de création : {{ form_widget(Articleform.date) }}<br/><br/>
+{{ form_start(formedit) }}
+Titre : {{ form_widget(formedit.titre) }} <br/>
+Résumé : {{ form_widget(formedit.resume) }} <br/>
+Contenu : {{ form_widget(formedit.contenu) }} <br/>
+Image : {{ form_widget(formedit.image) }} <br/>
+Date de création : {{ form_widget(formedit.date) }}<br/><br/>
 
 
 <button type="submit" class="btn btn-success"> envoyer le formulaire </button>
 
-{{ form_end(Articleform) }}
+{{ form_end(formedit) }}
 {% endblock %}
