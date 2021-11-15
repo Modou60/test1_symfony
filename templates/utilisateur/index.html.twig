@@ -40,6 +40,8 @@
 							<th> email </th>
 							<th>role</th>
 							<th> action </th>
+							<th> Modification </th>
+							<th> Suppression </th>
 						</tr>
 					</thead>
 					
@@ -57,6 +59,8 @@
 							<td> {{ utilisateur.role }} </td>
 
 							<td><a href="{{ path('utilisateur_id', {'id':utilisateur.id}) }}"> Voir les détails de l'utilisateur numéro {{ utilisateur.id }} </a></td>
+							<td><a href="{{ path('modif_utilisateur', {'id':utilisateur.id}) }}"> Modifier cette utilisateur </a></td>
+							<td><a href="{{ path('supprime_utilisateur', {'id':utilisateur.id}) }}"> Supprimer cette utilisateur </a></td>
 					</tr> 
 				{% endfor %}
 

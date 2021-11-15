@@ -3,7 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Utilisateurs;
-use DateTime;
+
+use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\StringType;
 
 use Symfony\Component\Form\AbstractType;
@@ -21,10 +22,10 @@ class UtilisateursType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', StringType::class)
-            ->add('prenom', StringType::class)
-            ->add('dateNaissance', DateTime::class)
-            ->add('login', StringType::class)
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('dateNaissance')
+            ->add('login', TextType::class)
             ->add('passWord', PasswordType::class)
             ->add('adresse', TextType::class)
             ->add('email', EmailType::class)

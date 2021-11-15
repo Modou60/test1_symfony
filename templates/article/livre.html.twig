@@ -52,8 +52,9 @@
 					<td> {{ article.image }} </td>
 					<td> {{ article.resume }} </td>
 
-						<td><a href="{{ path('edit_modifier', {'id': article.id}) }}"> Modifier un article l'id n° {{article.id}} </a>
+						<td><a href="{{ path('edit_modifier', {'id': article.id}) }}"> Modifier l'article n° {{article.id}} </a>
 						</td>
+												<td><a href="{{ path('del_article', {'id': article.id}) }}"> Supprimer l'article n° {{article.id}} </a></td>
 					</tr>
 				{% else %}
 					<tr>

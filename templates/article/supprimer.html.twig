@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Suppression d'un article! {% endblock %}
+
+{% block body %}
+
+<div class="form">
+
+<h1> Suppression d'un article! </h1>
+<br.!< <br/>
+<hr/>
+<br/><br/>
+
+{{ form_start(formedit) }}
+Titre : {{ form_widget(formedit.titre) }} <br/>
+Résumé : {{ form_widget(formedit.resume) }} <br/>
+Contenu : {{ form_widget(formedit.contenu) }} <br/>
+Image : {{ form_widget(formedit.image) }} <br/>
+Date de création : {{ form_widget(formedit.date) }}<br/><br/>
+
+
+<button type="submit" class="btn btn-success"> Supprimer </button>
+
+{{ form_end(formedit) }}
+{% endblock %}

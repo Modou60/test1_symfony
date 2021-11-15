@@ -181,7 +181,7 @@ public function supprimer(Request $request, Categorie $categorie, EntityManagerI
     
     
     // envoi de la page vers twig
-    return $this->render('categorie/catform.html.twig', [
+    return $this->render('categorie/supprimer_categorie.html.twig', [
          'form' => $categorie,
         'formedit' => $formedit->createView(),
     ]);

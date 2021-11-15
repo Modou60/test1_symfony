@@ -170,10 +170,36 @@ public function edit(Request $request, Articles $articles, EntityManagerInterfac
     
     
     // envoi de la page vers twig
-    return $this->render('article/livreformulaire.html.twig', [
+    return $this->render('article/modif_article.html.twig', [
          'form' => $articles,
         'formedit' => $formedit->createView(),
     ]);
-    
 }
+
+/**
+ * @route("/{id}/del", name="del_article", methods={"GET", "POST"})
+ */
+public function supprimerArticle(Request $request, Articles $articles, EntityManagerInterface $manager)
+{
+    $formedit = $this->createForm(ArticlesType::class, $articles);
+    $formedit->handleRequest($request);
+
+    // test de la validité
+    if ($formedit->isSubmitted() && $formedit->isValid())
+    {
+        $manager->remove($articles);
+        $manager->flush();
+        // redirection de la page
+        return $this->redirectToRoute('livre');
+    }
+    
+    
+    // envoi de la page vers twig
+    return $this->render('article/supprimer.html.twig', [
+         'form' => $articles,
+        'formedit' => $formedit->createView(),
+    ]);   
+}
+
+
 }

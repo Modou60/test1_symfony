@@ -72,4 +72,54 @@ return $this->render('utilisateur/nouvelutilisateur.html.twig',[
             'abonne' => $utilisateurs,
         ]);
     }
+
+
+    /**
+     * @Route("/{id}/edit", name="modif_utilisateur", methods={"GET", "POST"})
+     */
+    public function modifUser(Request $request, Utilisateurs $utilisateurs, EntityManagerInterface $manager): Response
+    {
+        $form = $this->createForm(UtilisateursType::class, $utilisateurs);
+        $form->handleRequest($request);
+
+        // test de la validité
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $manager->flush();
+            // Redirection de la page
+            return $this->redirectToRoute('utilisateur');
+        }
+
+        // Envoi vers la page twig
+        return $this->render('utilisateur/modif_utilisateur.html.twig',[
+            'formuser' => $utilisateurs,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/{id}/supprime", name="supprime_utilisateur", methods={"GET", "POST"})
+     */
+    public function supprimUser(Request $request, Utilisateurs $utilisateur, EntityManagerInterface $manager): Response
+    {
+        $form = $this->createForm(UtilisateursType::class, $utilisateur);
+        $form->handleRequest($request);
+
+        // test de la validité
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $manager->remove($utilisateur);
+            $manager->flush();
+            // Redirection de la page
+            return $this->redirectToRoute('utilisateur');
+        }
+
+        // Envoi vers la page twig
+        return $this->render('utilisateur/supprime_utilisateur.html.twig',[
+            'formuser' => $utilisateur,
+            'form' => $form->createView(),
+        ]);
+    }
+
 }
