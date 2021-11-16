@@ -37,7 +37,7 @@ class Articles
      * @Assert\Length(
      * min = 5,
      * max = 100,
-     * minMessage = "Le contenu doit avoir minimum {{ limit }} characters",
+     * minMessage = "Le contenu doit avoir minimum {{ limit }} caractères",
      * maxMessage = "Le contenu doit avoir au maximum {{ limit }} characters")
      */
     private $contenu;

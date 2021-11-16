@@ -1,4 +1,4 @@
-<?php
+d<?php
 
 namespace App\Entity;
 
@@ -23,7 +23,7 @@ class Categorie
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      * min = 3,
-     * max = 60,
+     * max = 6,
      * minMessage = "Le titre doit avoir au minimum {{ limit }} characteres",
      * maxMessage = "Le titre ne doit pas dépasser {{ limit }} character")
      */
