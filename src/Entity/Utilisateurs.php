@@ -4,10 +4,17 @@ namespace App\Entity;
 
 use App\Repository\UtilisateursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
+ * @
  */
+/**
+ * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
+ * @UniqueEntity("email")
+ */
+
 class Utilisateurs
 {
     /**
@@ -19,11 +26,23 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     * min = 2,
+     * max = 50,
+     * minMessage = "Le nom doit avoir au moins {{ limit }} characteres ",
+     * maxMessage = "Ce nom ne doit pas dépasser la longueur de {{ limit }} characteres")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * Assert\Length(
+     * min = 2,
+     * max = 50,
+     * minMessage = "Le prénom doit avoir au moins {{ limit }} characteres",
+     * maxMessage = "le prénom ne doit pas dépasser {{ limit }} characteres")
      */
     private $prenom;
 
@@ -35,21 +54,28 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     * message = "Ce champ ne doit pas être vide")
      */
     private $login;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     * message = "Ce champ ne doit pas être vide")
      */
     private $passWord;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email(
+     * message = "Le mail '{{ value }}' n'est pas valide. veuillez entrer un email valide.")
      */
     private $email;
 

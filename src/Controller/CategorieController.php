@@ -138,7 +138,7 @@ class CategorieController extends AbstractController
     }
 
 /**
- * @route("/{id}/edit", name="edit_categorie", methods={"GET", "POST"})
+ * @Route("/{id}/edit", name="edit_categorie", methods={"GET", "POST"})
  */
 public function edit(Request $request, Categorie $categorie, EntityManagerInterface $manager)
 {
@@ -163,7 +163,7 @@ public function edit(Request $request, Categorie $categorie, EntityManagerInterf
 }
 
 /**
- * @route("/{id}/del", name="del_categorie", methods={"GET", "POST"})
+ * @Route("/{id}/del", name="del_categorie", methods={"GET", "POST"})
  */
 public function supprimer(Request $request, Categorie $categorie, EntityManagerInterface $manager)
 {

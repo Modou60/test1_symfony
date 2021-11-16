@@ -151,9 +151,8 @@ class ArticleController extends AbstractController
     }
 
 
-
 /**
- * @route("/{id}/edit", name="edit_modifier", methods={"GET", "POST"})
+ * @Route("/{id}/edit", name="edit_modifier", methods={"GET", "POST"})
  */
 public function edit(Request $request, Articles $articles, EntityManagerInterface $manager)
 {

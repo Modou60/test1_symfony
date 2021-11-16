@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
@@ -13,10 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Articles
 {
     /**
-     * @Ass'ert/NotBlank
-     */
-    /**
-     * @Assert\Type("\DateTime")
+     * @Assert/NotBlank
      */
     /**
      * @ORM\Id
@@ -27,11 +24,21 @@ class Articles
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min = 5,
+     * max = 40,
+     * minMessage = "Le titre doit avoir au minimum {{ limit }} characters",
+     * maxMessage = "le titre ne doit pas dépasser {{ limit }} characters")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     * min = 5,
+     * max = 100,
+     * minMessage = "Le contenu doit avoir minimum {{ limit }} characters",
+     * maxMessage = "Le contenu doit avoir au maximum {{ limit }} characters")
      */
     private $contenu;
 
@@ -47,6 +54,12 @@ class Articles
 
     /**
      * @ORM\Column(type="text")
+     * @ORM\Column(type="text")
+     * @Assert\Length(
+     * min = 6,
+     * max = 100,
+     * minMessage = "Le résumé doit avoir minimum {{ limit }} characters",
+     * maxMessage = "Le résumé doit avoir au maximum {{ limit }} characters")
      */
     private $resume;
 	

@@ -22,8 +22,12 @@ class ArticlesType extends AbstractType
             ->add('titre', TextType::class, [
                 'label' => 'Entrez le titre',
             ])
-            ->add('resume', TextareaType::class)
-            ->add('contenu', TextareaType::class)
+            ->add('resume', TextareaType::class, [
+                'label' => 'Entrez le résumé'
+            ])
+            ->add('contenu', TextareaType::class, [
+                'label' => 'Entrez le contenu'
+            ])
             ->add('date', DateTimeType::class, [
                 'required' => false,
             ])
