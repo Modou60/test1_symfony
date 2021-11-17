@@ -13,6 +13,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
  * @UniqueEntity("email")
+* @UniqueEntity("logi  n",
+ * message = "ce login '{{ value }}' est déjà pris")
  */
 
 class Utilisateurs
