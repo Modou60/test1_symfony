@@ -2,18 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\UtilisateursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UtilisateursRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-/**
+
+/** 
  * @
- */
+ */ 
 /**
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
  * @UniqueEntity("email")
-* @UniqueEntity("logi  n",
+* @UniqueEntity("login",
  * message = "ce login '{{ value }}' est déjà pris")
  */
 
@@ -32,7 +33,7 @@ class Utilisateurs
      * @Assert\Length(
      * min = 2,
      * max = 50,
-     * minMessage = "Le nom doit avoir au moins {{ limit }} characteres ",
+     * minMessage = "Le nom doit avoir au moins {{ limit }} characteres",
      * maxMessage = "Ce nom ne doit pas dépasser la longueur de {{ limit }} characteres")
      */
     private $nom;
