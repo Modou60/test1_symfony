@@ -62,6 +62,12 @@ class Articles
      * maxMessage = "Le résumé doit avoir au maximum {{ limit }} characters")
      */
     private $resume;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
 	
     public function getId(): ?int
     {
@@ -130,6 +136,18 @@ class Articles
     public function setResume(string $resume): self
     {
         $this->resume = $resume;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

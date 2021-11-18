@@ -5,5 +5,5 @@ when@test:
     twig:
         strict_variables: true
 
-twig:
-    form_themes: ['bootstrap_4_layout.html.twig']
+# twig:
+#     form_themes: ['bootstrap_4_layout.html.twig']

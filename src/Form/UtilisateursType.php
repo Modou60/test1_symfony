@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\StringType;
 use PhpParser\Node\Stmt\Label;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType as TypeDateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -46,7 +47,9 @@ class UtilisateursType extends AbstractType
             ])
             ->add('email', EmailType::class)
             ->add('photo')
-            ->add('role')
+            ->add('role', ChoiceType::class,[
+                'choices' => ["Validée" => "Validée", "en attente" => "En attente", "Annulée" => "Annulée"]
+            ])
             ->add('Envoyer', SubmitType::class,[
                 'label' => 'Valider'
             ])
