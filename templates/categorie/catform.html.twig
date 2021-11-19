@@ -17,10 +17,6 @@ Faites vos Modifications souhaitées puis cliquez sur le bouton "modifier"
 </div>
 <br/><br/>
 
-{{ form_start(formedit)}}
-Titre : {{ form_widget(formedit.titre)}} <br/>
-Résumé : {{ form_widget(formedit.resume)}} <br/>
+{{ form(formedit)}}
 
-<button type="submit" class="btn btn-success"> Modifier </button>
-{{ form_end(formedit) }}
 {% endblock %}

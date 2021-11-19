@@ -25,6 +25,7 @@
 <th> id </th>
 <th> Titre </th>
 <th> Résumé </th>
+<th> Article </th>
 <th> Action </th>
 <th> Modifier </th>
 <th> Supprimer </th>
@@ -37,6 +38,11 @@
 <td> {{ categorie.id}} </td>
 <td> {{ categorie.titre}} </td>
 <td> {{ categorie.resume}} </td>
+<td>{% for article in categorie.articles %} 
+{{ article.titre }}
+
+{% endfor %}
+</td>
 <td><a href="{{ path('cat_id', {'id':categorie.id }) }}"> Afficher cette catégorie </a></td>
 <td><a href="{{ path('edit_categorie', {'id':categorie.id }) }}"> Modifier cette catégorie </a></td>
 <td><a href="{{ path('del_categorie', {'id':categorie.id }) }}"> supprimer cette catégorie </a></td>

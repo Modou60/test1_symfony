@@ -20,8 +20,8 @@ class ArticlesFixtures extends Fixture
             $categorie = new Categorie();
 
             // je remplis ses champs
-            $categorie->setTitre("Titre numéro $i")
-                ->setResume("Résumé de la catégorienuméro $i");
+            $categorie->setTitre("Titre de la catégorie numéro $i")
+                ->setResume("Résumé de ma catégorie");
 
             // je persiste la catégorie
             $manager->persist($categorie);
@@ -30,9 +30,7 @@ class ArticlesFixtures extends Fixture
             for ($j = 0; $j < 10; $j++) {
                 // j'instancie la classe article
                 $articles = new Articles();
-
-                // je fais un shuffle
-                // shuffle($categorie);
+                
                 // je remplis
                 $articles->setTitre("Titre de l'article numéro $j")
                      ->setImage("la photo de mon image pour l'article numéro $j")

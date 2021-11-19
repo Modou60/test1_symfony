@@ -29,6 +29,9 @@ class CategorieType extends AbstractType
                 'label' => 'Contenu',
                 'required' => 'true'
             ])
+            ->add('article', TextType::class,[
+                'label' => 'Article'
+            ])
             ->add('Envoyer', SubmitType::class,[
                 'label'=>'Valider'
             ])
