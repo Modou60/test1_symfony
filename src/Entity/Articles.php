@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -68,6 +70,16 @@ class Articles
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Auteurs::class, mappedBy="article")
+     */
+    private $auteur;
+
+    public function __construct()
+    {
+        $this->auteur = new ArrayCollection();
+    }
 	
     public function getId(): ?int
     {
@@ -148,6 +160,33 @@ class Articles
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Auteurs[]
+     */
+    public function getAuteur(): Collection
+    {
+        return $this->auteur;
+    }
+
+    public function addAuteur(Auteurs $auteur): self
+    {
+        if (!$this->auteur->contains($auteur)) {
+            $this->auteur[] = $auteur;
+            $auteur->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuteur(Auteurs $auteur): self
+    {
+        if ($this->auteur->removeElement($auteur)) {
+            $auteur->removeArticle($this);
+        }
 
         return $this;
     }

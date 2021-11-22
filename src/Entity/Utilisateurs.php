@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use PHPUnit\Framework\Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UtilisateursRepository;
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
@@ -92,6 +94,16 @@ class Utilisateurs
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $role;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="auteur")
+     */
+    private $commentaire;
+
+    public function __construct()
+    {
+        $this->commentaire = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -204,6 +216,36 @@ class Utilisateurs
     public function setRole(?string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaires[]
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaires $commentaire): self
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire[] = $commentaire;
+            $commentaire->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaires $commentaire): self
+    {
+        if ($this->commentaire->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUtilisateur() === $this) {
+                $commentaire->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }

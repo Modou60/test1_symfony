@@ -30,7 +30,7 @@ shuffle($accessibility);
         }
 
 
-        // $manager->persist($product);
+        // $manager->persist($location);
 
         $manager->flush();
     }
