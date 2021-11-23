@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use PHPUnit\Framework\Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UtilisateursRepository;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
  * @UniqueEntity("email")
 * @UniqueEntity("login",
- * message = "ce login '{{ value }}' est déjà pris")
+ * message = "Ce login '{{ value }}' est déjà pris")
  */
 
 class Utilisateurs
@@ -95,15 +95,7 @@ class Utilisateurs
      */
     private $role;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="auteur")
-     */
-    private $commentaire;
-
-    public function __construct()
-    {
-        $this->commentaire = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -220,33 +212,4 @@ class Utilisateurs
         return $this;
     }
 
-    /**
-     * @return Collection|Commentaires[]
-     */
-    public function getCommentaire(): Collection
-    {
-        return $this->commentaire;
-    }
-
-    public function addCommentaire(Commentaires $commentaire): self
-    {
-        if (!$this->commentaire->contains($commentaire)) {
-            $this->commentaire[] = $commentaire;
-            $commentaire->setUtilisateur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommentaire(Commentaires $commentaire): self
-    {
-        if ($this->commentaire->removeElement($commentaire)) {
-            // set the owning side to null (unless already changed)
-            if ($commentaire->getUtilisateur() === $this) {
-                $commentaire->setUtilisateur(null);
-            }
-        }
-
-        return $this;
-    }
 }

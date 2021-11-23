@@ -2,15 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\CommentairesRepository;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=CommentairesRepository::class)
- * @UniqueEntity("mail")
+ * @ORM\Entity(repositoryClass=CommentaireRepository::class)
  */
-class Commentaires
+class Commentaire
 {
     /**
      * @ORM\Id
@@ -20,16 +18,14 @@ class Commentaires
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Utilisateurs::class, inversedBy="commentaire")
+     * @ORM\Column(type="string", length=255)
      */
     private $auteur;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email(
-     * message = "Le mail '{{ value }}' n'est pas valide. Veuillez réessayer.")
      */
-    private $mail;
+    private $email;
 
     /**
      * @ORM\Column(type="date")
@@ -42,9 +38,9 @@ class Commentaires
     private $commentaire;
 
     /**
-     * 
+     * @ORM\ManyToOne(targetEntity=Articles::class, inversedBy="commentaire")
      */
-    
+    private $articles;
 
     public function getId(): ?int
     {
@@ -63,14 +59,14 @@ class Commentaires
         return $this;
     }
 
-    public function getMail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->mail;
+        return $this->email;
     }
 
-    public function setMail(string $mail): self
+    public function setEmail(string $email): self
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
@@ -99,14 +95,14 @@ class Commentaires
         return $this;
     }
 
-    public function getUtilisateur(): ?Utilisateurs
+    public function getArticles(): ?Articles
     {
-        return $this->utilisateur;
+        return $this->articles;
     }
 
-    public function setUtilisateur(?Utilisateurs $utilisateur): self
+    public function setArticles(?Articles $articles): self
     {
-        $this->utilisateur = $utilisateur;
+        $this->articles = $articles;
 
         return $this;
     }

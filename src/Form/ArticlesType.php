@@ -2,17 +2,20 @@
 
 namespace App\Form;
 
+use DateTime;
+use Symfony\Component\Form\FormTypeInterface;
 use App\Entity\Articles;
 
 use Doctrine\DBAL\Types\StringType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
+use Doctrine\DBAL\Types\DateTimeType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArticlesType extends AbstractType
 {
@@ -20,7 +23,7 @@ class ArticlesType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, [
-                'label' => 'Entrez le titre',
+                'label' => 'Entrez le titre'
             ])
             ->add('resume', TextareaType::class, [
                 'label' => 'Entrez le résumé'
@@ -28,17 +31,21 @@ class ArticlesType extends AbstractType
             ->add('contenu', TextareaType::class, [
                 'label' => 'Entrez le contenu'
             ])
-            ->add('date', DateTimeType::class, [
-                'required' => false,
-            ])
+           ->add('date', DateTime::class, [
+    'label' => 'Date'
+])
             ->add('image')
-            ->add('categorie', TextType::class,[
-                'label' => 'Catégorie'
+            ->add('categorie', EntityType::class, [
+                'label' => 'Catégorie',
+                'placeholder' => 'Catégorie',
+                'class' => Categorie::class,
+                'choice_label' => 'titre',
+                'multiple' => true
+                // expanded => true
             ])
-            ->add('Envoyer', SubmitType::class,[
-                'label' => 'Valider'
-            ])
-            ;
+            ->add('Envoyer', SubmitType::class, [
+                'label' => 'valider'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

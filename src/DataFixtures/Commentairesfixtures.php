@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Commentaires;
+use App\Entity\Commentaire;
 use App\Entity\Utilisateurs;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -16,14 +16,14 @@ class Commentairesfixtures extends Fixture
     {
         for ($i=0; $i<5; $i++)
         {
-            $commentaires = new Commentaires;
+            $commentaire = new Commentaire;
             
-            $commentaires->setAuteur("l'auteur du commentaire")
-            ->setMail("Mail de l'auteur numéro $i")
+            $commentaire->setAuteur("l'auteur du commentaire")
+            ->setEmail("Mail de l'auteur numéro $i")
             ->setDate(new DateTime())
             ->setCommentaire("Le commentaire du numéro $i");
         }
-        $manager->persist($commentaires);
+        $manager->persist($commentaire);
         $manager->flush();
     }
 }

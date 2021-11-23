@@ -72,14 +72,13 @@ class Articles
     private $categorie;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Auteurs::class, mappedBy="article")
+     * @ORM\ManyToOne(targetEntity=Auteurs::class, inversedBy="article")
      */
     private $auteur;
 
-    public function __construct()
-    {
-        $this->auteur = new ArrayCollection();
-    }
+    
+
+
 	
     public function getId(): ?int
     {
@@ -122,12 +121,6 @@ class Articles
         return $this;
     }
 
-
-
-
-
-
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -164,31 +157,19 @@ class Articles
         return $this;
     }
 
-    /**
-     * @return Collection|Auteurs[]
-     */
-    public function getAuteur(): Collection
+    public function getAuteur(): ?Auteurs
     {
         return $this->auteur;
     }
 
-    public function addAuteur(Auteurs $auteur): self
+    public function setAuteur(?Auteurs $auteur): self
     {
-        if (!$this->auteur->contains($auteur)) {
-            $this->auteur[] = $auteur;
-            $auteur->addArticle($this);
-        }
+        $this->auteur = $auteur;
 
         return $this;
     }
 
-    public function removeAuteur(Auteurs $auteur): self
-    {
-        if ($this->auteur->removeElement($auteur)) {
-            $auteur->removeArticle($this);
-        }
 
-        return $this;
+        
     }
 
-}
