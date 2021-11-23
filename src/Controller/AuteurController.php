@@ -50,13 +50,26 @@ class AuteurController extends AbstractController
             $manager->flush();
 
             // redirection
-            return $this->redirectToRoute('index_auteur');
+            return $this->redirectToRoute('auteur_id',[
+                'id' => $auteurs->getId(),
+            ]);
         } 
 
         // Envoi de la page vers twig
         return $this->render('auteur/nouvel_auteur.html.twig', [
             'ecrivain' => $auteurs,
             'formauteur' => $formauteur->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="auteur_id", methods={"GET"})
+     */
+    public function afficherAuteur(Auteurs $auteurs): Response
+    {
+        return $this->render('auteur/affiche_auteur.html.twig', [
+            'article' => $auteurs->getArticle(),
+            'auteur' => $auteurs,
         ]);
     }
 }

@@ -62,13 +62,10 @@
 						<td>
 							{{auteur.email}}
 						</td>
+
+						{# <td>{{article.titre}}</td> #}
 						<td>
-							{% for article in articles %}
-								{{article.auteur}}
-							{% endfor %}
-						</td>
-						<td>
-							<a href="{{ path('auteur_id', {'id': article.id}) }}">
+							<a href="{{ path('auteur_id', {'id': auteur.id}) }}">
 								Afficher l'auteur n°
 								{{auteur.id}}
 							</a>
@@ -84,14 +81,7 @@
 			{# <li><a href="{{ path('art_affichage',{'id': 'prod.id'}) }}">Consulter un livre donné</a></li> #}
 			{# <li><a href="{{ path('article.nouvelarticle')}}">Ajouter un nouveau livre</a></li> #}
 				<li><a href="{{ path('formulaire')}}"> Ajouter un nouvel auteur</a>
-			</li>
-			<li>
-				<a href="{{ path('demarrage') }}">
-					Revenir à la page d'accueil
-				</a>
-			</li>
-
-
+							<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a> </li>
 		</ul>
 	</div>
 {% endblock %}

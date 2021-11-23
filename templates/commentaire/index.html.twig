@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommentaireController!{% endblock %}
+{% block title %}Bienvenu(e) sur la page des commentaires!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,30 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>liste des commentaires✅</h1>
 
-    This friendly message is coming from:
+    <br/><br/>
+    <hr/>
+    <br/>
+
+    <div>
+    {% for commentaire in commentaires %}
+        {{ commentaire.id }} <br/>
+        {{ commentaire.auteur }} <br/>
+        {{ commentaire.email }} <br/>
+        {{ commentaire.date|date("d/m/Y") }} <br/>
+{{ commentaire.commentaire}} <br/>
+
+    
+
+    
+        
+     
+
+    </div> 
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/modou/Symfony/test1/src/Controller/CommentaireController.php'|file_link(0) }}">src/Controller/CommentaireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/modou/Symfony/test1/templates/commentaire/index.html.twig'|file_link(0) }}">templates/commentaire/index.html.twig</a></code></li>
+        
+
     </ul>
 </div>
 {% endblock %}

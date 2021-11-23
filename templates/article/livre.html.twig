@@ -60,6 +60,7 @@
 					<td><a href="{{ path('article_id', {'id': article.id}) }}"> Afficher l'article n° {{article.id}} </a></td>
 						<td><a href="{{ path('edit_modifier', {'id': article.id}) }}"> Modifier l'article n° {{article.id}} </a></td>
 												<td><a href="{{ path('del_article', {'id': article.id}) }}"> Supprimer l'article n° {{article.id}} </a></td>
+												<td><a href="{{ path('index_commentaire') }}"> Liste des commentaires </a></td>
 					</tr>
 				{% else %}
 					<tr>

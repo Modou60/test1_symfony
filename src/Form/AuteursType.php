@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Auteurs;
 use App\Entity\Articles;
+use DateTime;
+
 use Doctrine\DBAL\Types\StringType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -16,6 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+
+use Symfony\Component\Form\FormTypeInterface;
+
 
 class AuteursType extends AbstractType
 {
@@ -41,7 +46,13 @@ $builder
     // used to render a select box, check boxes or radios
     // 'multiple' => true,
     // expanded => true,
-])
-;
+]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Auteurs::class,
+        ]);
     }
 }

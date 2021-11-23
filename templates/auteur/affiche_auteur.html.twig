@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Laffichage de l'auteur numéro {{ auteur.id }} {% endblock %}
+
+{% block body %}
+<div>
+<h1> Bonjour {{ auteur.nom }}! </h1>
+<br/><br/>
+<hr/>
+<br/>
+<div>
+{{ auteur.id }} <br/>
+{{ auteur.nom }} <br/>
+{{ auteur.prenom }} <br/>
+{{ auteur.email }} <br/><br/>
+<ul>
+{% for article in auteur.article %}
+{{ article.titre }} 
+{% endfor %}
+</ul>
+
+<br/><br/><br/>
+
+{# <h1> Liste des articles de l'auteur numéro {{ auteur.id }} </h1> #}
+<ul>
+{% for auteur in article %}
+
+<li> {{ auteur.titre }} </li>
+
+{% endfor %} #}
+</div>
+
+<br/><br/>
+<ul>
+<li><a href="{{ path('index_auteur') }}"> Revenir à la page des auteurs</a></li>
+			<li><a href="{{ path('demarrage') }}"> Revenir à la page d'accueil</a></li>
+</ul>
+</div>
+{% endblock %}
