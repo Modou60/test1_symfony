@@ -1,6 +1,7 @@
 <?php
 namespace App\Form;
 
+use App\Entity\Commentaire;
 use App\Entity\Commentaires;
 use App\Entity\Utilisateurs;
 use Doctrine\DBAL\Types\DateTimeType;
@@ -25,16 +26,14 @@ class CommentairesTypes extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('auteur', EntityType::class,[
+        ->add('auteur', TextType::class, [
             'label' => 'Auteur :',
             'required' => 'true',
             'placeholder' => 'Auteur',
-            // l'entity à utiliser
-            'class' => Utilisateurs::class,
-            // la propriété à choisir
-            'choice_label' => 'nom',
+            
+
             // cases à cocher ou bouton radio
-            'multiple' => true
+            // 'multiple' => true
             // 'expanded' => true
         ])
         ->add('mail', EmailType::class, [
@@ -48,5 +47,12 @@ class CommentairesTypes extends AbstractType
         ->add('commentaire', TextareaType::class, [
             'label' => 'Votre commentaire :'
         ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Commentaire::class,
+       
     }
 }

@@ -20,7 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 class AuteurController extends AbstractController
 {
     /**
-     * @Route("/auteur", name="index_auteur")
+     * @Route("/", name="index_auteur")
      */
     public function index(): Response
     {
@@ -51,7 +51,7 @@ class AuteurController extends AbstractController
 
             // redirection
             return $this->redirectToRoute('auteur_id',[
-                'id' => $auteurs->getId(),
+                // 'id' => $auteurs->getId(),
             ]);
         } 
 
@@ -68,8 +68,58 @@ class AuteurController extends AbstractController
     public function afficherAuteur(Auteurs $auteurs): Response
     {
         return $this->render('auteur/affiche_auteur.html.twig', [
-            'article' => $auteurs->getArticle(),
+             'article' => $auteurs->getArticle(),
             'auteur' => $auteurs,
         ]);
     }
+
+    /**
+     * @Route("/{id}/edit", name="indexedit", methods={"GET", "POST"})
+     */
+    public function editauteur(Request $request, Auteurs $auteurs, EntityManagerInterface $entityManagerInterface): Response
+    {
+
+    $form = $this->createForm(AuteursType::class, $auteurs);
+    $form->handleRequest($request);
+
+    // test de la soumission du formulaire
+    if ($form->isSubmitted() && $form->isValid())
+    {
+        $entityManagerInterface->flush();
+
+        // redirection de la page
+        return $this->redirectToRoute('index_auteur');
+    }
+
+    // envoi de la page vers twig
+    return $this->render('auteur/auteur_edit.html.twig', [
+        'auteur' => $auteurs,
+        
+        'formauteur' => $form->createView(),
+    ]);
+    }
+
+    /**
+     * @Route("/{id}/sup", name="sup_auteur", methods={"GET", "POST"})
+     */
+    public function supauteur(Request $request, Auteurs $auteurs, EntityManagerInterface $entityManagerInterface)
+{
+    $autform =$this->createForm(AuteursType::class, $auteurs);
+    $autform->handleRequest($request);
+    //test de la validité
+    if ($autform->isSubmitted() && $autform->isValid())
+    {
+        $entityManagerInterface->remove($auteurs);
+        $entityManagerInterface->flush();
+
+        // redirection de la page
+        return $this->redirectToRoute('index_auteur');
+    }
+
+    // envoi de la page vers twig
+    return $this->render('auteur/auteur_sup.html.twig', [
+        'auteurs' => $auteurs,
+        'autformulaire' => $autform->createView(),
+    ]);
+}
 }

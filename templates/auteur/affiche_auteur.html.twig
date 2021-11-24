@@ -13,21 +13,19 @@
 {{ auteur.nom }} <br/>
 {{ auteur.prenom }} <br/>
 {{ auteur.email }} <br/><br/>
+<h1> liste de ses articles</h1>
+<br/><br/><br/><lbr/>
 <ul>
 {% for article in auteur.article %}
-{{ article.titre }} 
+<li> {{ article.titre }} </li>
 {% endfor %}
 </ul>
 
-<br/><br/><br/>
+<br/><br/>
 
-{# <h1> Liste des articles de l'auteur numéro {{ auteur.id }} </h1> #}
 <ul>
-{% for auteur in article %}
-
-<li> {{ auteur.titre }} </li>
-
-{% endfor %} #}
+ <li> <a href="{{path('index_auteur')}}"> Revenir à la liste des auteurs✅</a> </li>
+</ul>
 </div>
 
 <br/><br/>

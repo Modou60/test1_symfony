@@ -34,7 +34,7 @@ $builder
     'label' => 'Entrez le prénom de l\'auteur :'
 ])
 ->add('email', EmailType::class,[
-    'label' => 'Entrez le mail l\'auteur :'
+    'label' => 'Entrez le mail de l\'auteur :'
 ])
 ->add('article', EntityType::class, [
     'label' => 'Article',
@@ -46,6 +46,9 @@ $builder
     // used to render a select box, check boxes or radios
     // 'multiple' => true,
     // expanded => true,
+])
+->add('Envoyer', SubmitType::class, [
+    'label' => 'Valider'
 ]);
     }
 

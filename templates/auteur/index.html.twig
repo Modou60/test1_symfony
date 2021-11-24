@@ -63,13 +63,18 @@
 							{{auteur.email}}
 						</td>
 
-						{# <td>{{article.titre}}</td> #}
+						 <ul><td>{% for art in auteur.article %}
+							 {{ art.titre }}
+						 {% endfor %}
+						</td></ul>
 						<td>
 							<a href="{{ path('auteur_id', {'id': auteur.id}) }}">
 								Afficher l'auteur n°
 								{{auteur.id}}
 							</a>
 						</td>
+						{# <td> <a href="{{ path('indexedit')}}"> Modifier l'auteur </a> </td> #}
+					{# <td> <a href="{{path('sup_auteur')}}"> Supprimer l'auteur</a></td> #}
 					</tr>
 
 				{% endfor %}

@@ -1,38 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenu(e) sur la page des commentaires!{% endblock %}
+{% block title %}Bienvenu(e) sur la page des commentaires!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-<div class="example-wrapper">
-    <h1>liste des commentaires✅</h1>
+	<div class="example-wrapper">
+		<h1>liste des commentaires✅</h1>
 
-    <br/><br/>
-    <hr/>
-    <br/>
+		<br/><br/>
+		<hr/>
+		<br/>
 
-    <div>
-    {% for commentaire in commentaires %}
-        {{ commentaire.id }} <br/>
-        {{ commentaire.auteur }} <br/>
-        {{ commentaire.email }} <br/>
-        {{ commentaire.date|date("d/m/Y") }} <br/>
-{{ commentaire.commentaire}} <br/>
+		<div>
+			{% for commentaire in commentaires %}
+				{{ commentaire.id }}
+				<br/>
+				{{ commentaire.auteur }}
+				<br/>
+				{{ commentaire.email }}
+				<br/>
+				{{ commentaire.date|date("d/m/Y") }}
+				<br/>
+				{{ commentaire.commentaire}}
+				<br/>
+                
+{% endfor %}
 
-    
-
-    
-        
-     
-
-    </div> 
-    <ul>
-        
-
-    </ul>
-</div>
-{% endblock %}
+			</div>
+			<ul></ul>
+		</div>
+	{% endblock %}

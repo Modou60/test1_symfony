@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentaireController extends AbstractController
 {
     /**
-     * @Route("/index_commentaire", name="index_commentaire")
+     * @Route("/", name="index_commentaire")
      */
     public function index(): Response
     {
@@ -26,7 +26,45 @@ class CommentaireController extends AbstractController
 
         return $this->render('commentaire/index.html.twig', [
             'commentaires' => $commentaire,
-            
+        ]);
+    }
+
+    /**
+     * @Route("/nouveaucom", name="nouveaucom", methods={"GET", "POST"})
+     */
+    public function nouveaucom(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        // j'instancie la classe Commentaire
+        $commentaire = new Commentaire;
+        // création de formulaire
+        $formcom = $this->createForm(CommentairesType::class, $commentaire);
+        $formcom->handleRequest($request);
+
+        //test formulaire
+        if ($formcom->isSubmitted() && $formcom->isValid())
+        {
+            $entityManagerInterface->persist($commentaire);
+            $entityManagerInterface->flush();
+
+            // redirection
+            return $this->redirectToRoute('index_commentaire');
+        }
+
+        // affichage de la page vers twig
+        return $this->render('commentaire/nouveaucom.html.twig', [
+            'commentaires' => $commentaire,
+            'commentaireform' => $formcom->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="afficher_com", methods={"GET"})
+     */
+    public function affichercom(Commentaire $commentaire): Response
+    {
+        return $this->render('commentaire/affichecom.html.twig', [
+            'id' => $commentaire->getId(),
+            'commentaires' => $commentaire,
         ]);
     }
 }

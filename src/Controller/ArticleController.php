@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Form\ArticlesType;
+use App\Entity\Commentaire;
+use App\Entity\Auteurs
 use App\Repository\ArticlesRepository;
-
+use App\Form\CommentairesTypes;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 use SebastianBergmann\CodeCoverage\Report\Html\Renderer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +35,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="livre")
      */
-    // première méthode
+    // Affichage de tous les articles
     public function livre(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Articles::class);
@@ -58,7 +61,7 @@ class ArticleController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($livre);
             $manager->flush();
-            
+            $this->addFlash("Article", "L'article abien été ajouté.").
 // redirection
             return $this->redirectToRoute('livre');
             
@@ -142,11 +145,27 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="article_id",methods={"GET"})
      */
-    public function montrer(Articles $articles): Response
+    public function montrer(Articles $articles EntityManagerInterface $entityManagerInterface): Response
     {
+        $commentaire = new Commentaire;
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+        // test du formulaire
+        if ($form->isSubmitted() && $form->isValid())
+        {
+$entityManagerInterface->persist($commentaire);
+$articles->addCommentaire($commentaire);
+$entityManagerInterface->flush();
+
+// redirection
+return $this->redirectToRoute('livre');
+        }
+
         return $this->render('article/affichage.html.twig', [
             
             'articles' => $articles,
+            'auteur' => $articles->getAuteur(),
+            'formart' => $form->createView(),
         ]);
     }
 

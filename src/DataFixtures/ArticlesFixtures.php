@@ -1,12 +1,13 @@
 <?php
 namespace App\DataFixtures;
+use DateTime;
+use App\Entity\Auteurs;
 use App\Entity\Articles;
 use App\Entity\Categorie;
-use App\Entity\Auteurs;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
-use DateTime;
+use App\Entity\Commentaire;
 use Doctrine\DBAL\Types\DateTimeType;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 // use Faker;
 
 class ArticlesFixtures extends Fixture
@@ -26,7 +27,7 @@ class ArticlesFixtures extends Fixture
         $manager->persist($auteurs);
         $manager->flush();
 
-        // je crée 5 catégories et 10 articles
+        // je crée des catégories et des articles
         for ($k = 0; $k < 4; $k++) {
             // j'instancie la classe catégorie
             $categorie = new Categorie();
@@ -57,8 +58,21 @@ class ArticlesFixtures extends Fixture
 
                 // je persiste mon article
                 $manager->persist($articles);
+
+                // je crée mes commentaires
+                for ($l=0; $l<5; $l++)
+        
+            $commentaire = new Commentaire;
+            
+            $commentaire->setAuteur("l'auteur du commentaire")
+            ->setEmail("Mail de l'auteur numéro $l")
+            ->setDate(new \DateTime())
+            ->setCommentaire("Le commentaire du numéro $l");
+        // je persiste mes commentaires
+        $manager->persist($commentaire);
+
             }
-            $manager->flush();
+            
             
         }
 
