@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Form\ArticlesType;
 use App\Entity\Commentaire;
-use App\Entity\Auteurs
+use App\Entity\Auteurs;
 use App\Repository\ArticlesRepository;
-use App\Form\CommentairesTypes;
+use App\Form\CommentairesType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
@@ -61,7 +61,7 @@ class ArticleController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($livre);
             $manager->flush();
-            $this->addFlash("Article", "L'article abien été ajouté.").
+            $this->addFlash("Article", "L'article abien été ajouté.");
 // redirection
             return $this->redirectToRoute('livre');
             
@@ -145,10 +145,10 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="article_id",methods={"GET"})
      */
-    public function montrer(Articles $articles EntityManagerInterface $entityManagerInterface): Response
+    public function montrer(Request $request, Articles $articles, EntityManagerInterface $entityManagerInterface): Response
     {
         $commentaire = new Commentaire;
-        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form = $this->createForm(CommentairesType::class, $commentaire);
         $form->handleRequest($request);
         // test du formulaire
         if ($form->isSubmitted() && $form->isValid())
@@ -165,7 +165,7 @@ return $this->redirectToRoute('livre');
             
             'articles' => $articles,
             'auteur' => $articles->getAuteur(),
-            'formart' => $form->createView(),
+            'formcommentaire' => $form->createView(),
         ]);
     }
 

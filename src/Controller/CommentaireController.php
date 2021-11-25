@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Commentaire;
-use App\Form\CommentairesTypes;
+use App\Form\CommentairesType;
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;

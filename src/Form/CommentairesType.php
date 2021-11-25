@@ -2,7 +2,6 @@
 namespace App\Form;
 
 use App\Entity\Commentaire;
-use App\Entity\Commentaires;
 use App\Entity\Utilisateurs;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\StringType;
@@ -34,7 +33,7 @@ class CommentairesTypes extends AbstractType
 
             // cases à cocher ou bouton radio
             // 'multiple' => true
-            // 'expanded' => true
+             'expanded' => true,
         ])
         ->add('mail', EmailType::class, [
             'label' => 'Entrez votre email :',
@@ -53,6 +52,6 @@ class CommentairesTypes extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Commentaire::class,
-       
-    }
+        ]);
+}
 }
