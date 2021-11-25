@@ -40,17 +40,15 @@ class Auteurs
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="auteur")
+     * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="auteur", orphanRemoval=true)
      */
-    private $article;
+    private $articles;
 
     public function __construct()
     {
-        $this->article = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
-
-    
-    
+        
     public function getId(): ?int
     {
         return $this->id;
@@ -95,15 +93,15 @@ class Auteurs
     /**
      * @return Collection|Articles[]
      */
-    public function getArticle(): Collection
+    public function getArticles(): Collection
     {
-        return $this->article;
+        return $this->articles;
     }
 
     public function addArticle(Articles $article): self
     {
-        if (!$this->article->contains($article)) {
-            $this->article[] = $article;
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
             $article->setAuteur($this);
         }
 
@@ -112,7 +110,7 @@ class Auteurs
 
     public function removeArticle(Articles $article): self
     {
-        if ($this->article->removeElement($article)) {
+        if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
             if ($article->getAuteur() === $this) {
                 $article->setAuteur(null);

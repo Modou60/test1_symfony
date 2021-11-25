@@ -20,32 +20,25 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-class CommentairesTypes extends AbstractType
+class CommentairesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
         ->add('auteur', TextType::class, [
             'label' => 'Auteur :',
-            'required' => 'true',
-            'placeholder' => 'Auteur',
-            
-
-            // cases à cocher ou bouton radio
-            // 'multiple' => true
-             'expanded' => true,
+            'required' => true,
         ])
         ->add('mail', EmailType::class, [
             'label' => 'Entrez votre email :',
-            'placeholder' => 'Entrez votre email :'
         ])
-        ->add('date', DateType::class, [
-            'label' => 'Date',
-            'placeholder' => 'Date'
-        ])
+        // ->add('date', DateType::class, [
+            // 'label' => 'Date',
+        // ])
         ->add('commentaire', TextareaType::class, [
             'label' => 'Votre commentaire :'
-        ]);
+        ])
+        ->add('Envoyer', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

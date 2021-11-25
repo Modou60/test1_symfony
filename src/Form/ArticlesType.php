@@ -12,6 +12,7 @@ use Doctrine\DBAL\Types\DateTimeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -37,10 +38,9 @@ class ArticlesType extends AbstractType
             ->add('image')
             ->add('categorie', EntityType::class, [
                 'label' => 'Catégorie',
-                'placeholder' => 'Catégorie',
                 'class' => Categorie::class,
                 'choice_label' => 'titre',
-                'multiple' => true
+                // 'multiple' => true
                 // expanded => true
             ])
             ->add('Envoyer', SubmitType::class, [

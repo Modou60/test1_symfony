@@ -142,32 +142,32 @@ class ArticleController extends AbstractController
     //    ]);
     // }
 
-    /**
-     * @Route("/{id}", name="article_id",methods={"GET"})
-     */
-    public function montrer(Request $request, Articles $articles, EntityManagerInterface $entityManagerInterface): Response
-    {
-        $commentaire = new Commentaire;
-        $form = $this->createForm(CommentairesType::class, $commentaire);
-        $form->handleRequest($request);
-        // test du formulaire
-        if ($form->isSubmitted() && $form->isValid())
-        {
-$entityManagerInterface->persist($commentaire);
-$articles->addCommentaire($commentaire);
-$entityManagerInterface->flush();
+//     /**
+//      * @Route("/{id}", name="article_id", methods={"GET", "POST}")
+//      */
+//     public function montrer(Request $request, Articles $articles, EntityManagerInterface $entityManagerInterface): Response
+//     {
+//         $commentaire = new Commentaire();
+//         $form = $this->createForm(CommentairesType::class, $commentaire);
+//         $form->handleRequest($request);
+//         // test du formulaire
+//         if ($form->isSubmitted() && $form->isValid())
+//         {
+// $entityManagerInterface->persist($commentaire);
+// $articles->addCommentaire($commentaire);
+// $entityManagerInterface->flush();
 
-// redirection
-return $this->redirectToRoute('livre');
-        }
+// // redirection
+// return $this->redirectToRoute('livre');
+//         }
 
-        return $this->render('article/affichage.html.twig', [
+//         return $this->render('article/affichage.html.twig', [
             
-            'articles' => $articles,
-            'auteur' => $articles->getAuteur(),
-            'formcommentaire' => $form->createView(),
-        ]);
-    }
+//             'articles' => $articles,
+//             'auteur' => $articles->getAuteur(),
+//             'formcommentaire' => $form->createView(),
+//         ]);
+//     }
 
 
 /**

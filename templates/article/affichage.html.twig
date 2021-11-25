@@ -40,7 +40,7 @@
 <h1> Les auteurs de cet article </h1>
 <br/>
 <ul>
-<li> {{ auteurs.nom }} </li>
+<li> {{ auteur.nom }} </li>
 </ul>
 
 <br/><br/>
@@ -48,7 +48,7 @@
 <h1> liste des commentaires </h1>
 <br/>
 
-{% for commentaire in article.commentaire %}
+{% for commentaire in articles.commentaire %}
 <p>
 date : {{commentaires.date|date("d/m/Y") }} <br/>
 {{ commentaires.commentaire }}
@@ -64,7 +64,7 @@ date : {{commentaires.date|date("d/m/Y") }} <br/>
 <hr/>
 <br/>
 
-{{ form(formcommentaire) )}}
+{{ form(formcommentaire) }}
 
 <br/><br/>
 
