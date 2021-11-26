@@ -1,7 +1,7 @@
 <?php
 namespace App\Form;
 
-use App\Entity\Commentaire;
+use App\Entity\Commentaires;
 use App\Entity\Utilisateurs;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\StringType;
@@ -35,7 +35,7 @@ class CommentairesType extends AbstractType
         // ->add('date', DateType::class, [
             // 'label' => 'Date',
         // ])
-        ->add('commentaire', TextareaType::class, [
+        ->add('contenu', TextareaType::class, [
             'label' => 'Votre commentaire :'
         ])
         ->add('Envoyer', SubmitType::class);
@@ -44,7 +44,7 @@ class CommentairesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Commentaire::class,
+            'data_class' => Commentaires::class,
         ]);
 }
 }

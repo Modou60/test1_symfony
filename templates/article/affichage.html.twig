@@ -48,10 +48,11 @@
 <h1> liste des commentaires </h1>
 <br/>
 
-{% for commentaire in articles.commentaire %}
+{% for commentaire in articles.commentaires %}
+<p>Auteur : {{ commentaire.auteur }} E-mail : {{ commentaire.mail }} </p>
 <p>
-date : {{commentaires.date|date("d/m/Y") }} <br/>
-{{ commentaires.commentaire }}
+date : {{commentaire.date|date("d/m/Y") }} <br/>
+{{ commentaire.contenu }}
 </p>    
 {% endfor %}
 
