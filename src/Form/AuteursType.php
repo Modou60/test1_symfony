@@ -15,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
@@ -32,25 +31,25 @@ class AuteursType extends AbstractType
             'label' => 'Entrez le prénom de l\'auteur :'])
             ->add('email', EmailType::class , [
             'label' => 'Entrez le mail de l\'auteur :'])
-            ->add('article', EntityType::class , [
-            'label' => 'Article',
-            // le choi de la proprièté venant de l'entity
-            'class' => Articles::class ,
-            // je fais le choix sur quelle proprété
-            'choice_label' => 'titre',
+             ->add('article', EntityType::class, [
+             'label' => 'Article',
+            // le choi de la propriété venant de l'entity
+             'class' => Articles::class,
+            // je fais le choix sur quelle propriété
+             'choice_label' => 'titre',
             // used to render a select box, check boxes or radios
-            'multiple' => true,
+             'multiple' => true,
             // expanded => true,        
-        ])
-            ->add('Envoyer', SubmitType::class , [
-            'label' => 'Valider']
-        );
+         ])
+            ->add('Envoyer', SubmitType::class, [
+            'label' => 'Valider'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Auteurs::class ,
+            'data_class' => Auteurs::class,
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Articles;
 use App\Entity\Auteurs;
 use App\Form\AuteursType;
 use App\Repository\AuteursRepository;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+// use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 /**
  * @Route("/auteur")
@@ -68,7 +69,7 @@ class AuteurController extends AbstractController
     public function afficherAuteur(Auteurs $auteurs): Response
     {
         return $this->render('auteur/affiche_auteur.html.twig', [
-             'article' => $auteurs->getArticle(),
+             'article' => $auteurs->getArticles(),
             'auteur' => $auteurs,
         ]);
     }
@@ -85,6 +86,7 @@ class AuteurController extends AbstractController
     // test de la soumission du formulaire
     if ($form->isSubmitted() && $form->isValid())
     {
+    
         $entityManagerInterface->flush();
 
         // redirection de la page

@@ -14,9 +14,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
-use SebastianBergmann\CodeCoverage\Report\Html\Renderer;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+// use Symfony\Component\Validator\Constraints\DateTime;
+// use SebastianBergmann\CodeCoverage\Report\Html\Renderer;
+// use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+// use Symfony\Component\Form\Extension\Core\Type\DateTimeType as TypeDateTimeType;
+use Doctrine\DBAL\Types\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * @Route("/article")
@@ -34,7 +38,7 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/", name="livre")
+     * @Route("/livre", name="livre")
      */
     // Affichage de tous les articles
     public function livre(): Response
@@ -74,75 +78,6 @@ class ArticleController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/nouvelarticle", name="article.nouvelarticle")
-     */
-    // Ici on Fait un Enregistrement avec une Formulaire
-
-    public function pageForm(Request $request, EntityManagerInterface $manager)
-    {
-        $articles = new Articles(); // Instanciation
-
-
-        // Creation de mon Formulaire
-        $form = $this->createFormBuilder($articles)
-            ->add('titre')
-            ->add('resume')
-            ->add('contenu')
-            ->add('createdAt')
-            ->add('image')
-
-            // Demande le résultat
-            ->getForm();
-
-        // Analyse des Requetes & Traitement des information 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($articles);
-            $manager->flush();
-
-            return $this->redirectToRoute(
-                'article.nouvelarticle',
-                ['id' => $articles->getId()]
-            ); // Redirection vers la page
-        }
-
-        $manager->persist($articles);
-        $manager->flush();
-
-        // Redirection du Formulaire vers le TWIG pour l’affichage avec
-        return $this->render('article/new2.html.twig', [
-            'formArticle' => $form->createView()
-        ]);
-    }
-
-
-    // /**
-    //  * @Route("/nouveau", name="articles_nouveau")
-    //  */
-    // public function nouveau(Request $request, EntityManagerInterface $em): Response
-    // {
-    //    $articles = new Articles();
-
-    //    // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
-    //    $articles->setTitre(" Titre de mon Article");
-    // //    $articles->setImage("");
-    //    $articles->setResumé(" Titre de mon Article");
-    //    $articles->setDate(new  \DateTime());
-    //    $articles->setContenu(" Contenu de mon Article Contenu de mon ArticleContenu de mon ArticleContenu de mon ArticleContenu de mon Article");
-
-    //    // Je persiste Mon Enregistrement
-    //    $em->persist($articles);
-    //    $em->flush();
-
-    //    // J'envoie au niveau du temple pour l'enregistrement
-    //    return $this->render('article/artnouveau.html.twig', [
-    //        'article' => $articles,
-    //    ]);
-    // }
-
     /**
      * @Route("/{id}", name="article_id", methods={"GET", "POST"})
      */
@@ -153,7 +88,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
         // test du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
-            $commentaires->setDate(new \DateTime()); 
+            $commentaires->setDate(new \DateTime());
             $entityManagerInterface->persist($commentaires);
             $articles->addCommentaire($commentaires);
             $entityManagerInterface->flush();
@@ -163,7 +98,6 @@ class ArticleController extends AbstractController
         }
 
         return $this->render('article/affichage.html.twig', [
-
             'articles' => $articles,
             'auteur' => $articles->getAuteur(),
             'formcommentaire' => $form->createView(),
@@ -181,6 +115,7 @@ class ArticleController extends AbstractController
 
         // test de la validité
         if ($formedit->isSubmitted() && $formedit->isValid()) {
+            $articles->setDate(new \DateTime());
             $manager->flush();
             // redirection de la page
             return $this->redirectToRoute('livre');

@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Laffichage de l'auteur numéro {{ auteur.id }} {% endblock %}
+{% block title %} L'affichage de l'auteur numéro {{ auteur.id }} {% endblock %}
 
 {% block body %}
 <div>
@@ -16,7 +16,7 @@
 <h1> liste de ses articles</h1>
 <br/><br/><br/><lbr/>
 <ul>
-{% for article in auteur.article %}
+{% for article in auteur.articles %}
 <li> {{ article.titre }} </li>
 {% endfor %}
 </ul>

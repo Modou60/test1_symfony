@@ -87,7 +87,7 @@ return $this->render('utilisateur/nouvelutilisateur.html.twig',[
         {
             $manager->flush();
             // Redirection de la page
-            return $this->redirectToRoute('utilisateur');
+            return $this->redirectToRoute('utilisateur_id ["id" => $utilisateurs->getId]');
         }
 
         // Envoi vers la page twig
@@ -112,7 +112,7 @@ return $this->render('utilisateur/nouvelutilisateur.html.twig',[
             $manager->remove($utilisateur);
             $manager->flush();
             // Redirection de la page
-            return $this->redirectToRoute('utilisateur');
+            return $this->redirectToRoute('utilisateur_id, ["id" => $utilisateurs->getId]');
         }
 
         // Envoi vers la page twig
