@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\Commentaire;
+use App\Entity\Commentaires;
 use App\Form\CommentairesType;
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\EntityManager;
@@ -35,7 +35,7 @@ class CommentaireController extends AbstractController
     public function nouveaucom(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         // j'instancie la classe Commentaire
-        $commentaire = new Commentaire;
+        $commentaire = new Commentaires();
         // création de formulaire
         $formcom = $this->createForm(CommentairesType::class, $commentaire);
         $formcom->handleRequest($request);

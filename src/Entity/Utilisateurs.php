@@ -16,8 +16,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
  * @UniqueEntity("email")
-* @UniqueEntity("login",
- * message = "Ce login '{{ value }}' est déjà pris")
+* @UniqueEntity("username",
+ * message = "Ce username '{{ value }}' est déjà pris")
  */
 
 class Utilisateurs
@@ -62,14 +62,14 @@ class Utilisateurs
      * @Assert\NotBlank(
      * message = "Ce champ ne doit pas être vide")
      */
-    private $login;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
      * message = "Ce champ ne doit pas être vide")
      */
-    private $passWord;
+    private $plainPassword;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -139,26 +139,26 @@ class Utilisateurs
         return $this;
     }
 
-    public function getLogin(): ?string
+    public function getusername(): ?string
     {
-        return $this->login;
+        return $this->username;
     }
 
-    public function setLogin(string $login): self
+    public function setusername(string $username): self
     {
-        $this->login = $login;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getPassWord(): ?string
+    public function getplainPassword(): ?string
     {
-        return $this->passWord;
+        return $this->plainPassword;
     }
 
-    public function setPassWord(string $passWord): self
+    public function setplainPassword(string $plainPassword): self
     {
-        $this->passWord = $passWord;
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }

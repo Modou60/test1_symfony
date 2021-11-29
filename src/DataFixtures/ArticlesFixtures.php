@@ -1,13 +1,17 @@
 <?php
+
 namespace App\DataFixtures;
-use DateTime;
+
 use App\Entity\Auteurs;
 use App\Entity\Articles;
 use App\Entity\Categorie;
 use App\Entity\Commentaire;
+use App\Entity\Commentaires;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Egulias\EmailValidator\Parser\Comment;
+use Symfony\Component\Validator\Constraints\DateTime;
 // use Faker;
 
 class ArticlesFixtures extends Fixture
@@ -16,69 +20,50 @@ class ArticlesFixtures extends Fixture
     {
         // $faker = faker\Factory::create('fr_Fr');
 
-// je remplis mes auteurs
-        for ($i=0; $i<3; $i++)
-        {
-            $auteurs = new Auteurs;
+        // je remplis mes auteurs
+        for ($i = 1; $i <= 5; $i++) {
+
+            $auteurs = new Auteurs();
             $auteurs->setNom("nom de l'auteur numéro $i")
-            ->setPrenom("Prénom de l'auteur numéro $i")
-            ->setEmail("le mail de l'auteur numéro $i");
-        
-        $manager->persist($auteurs);
-        $manager->flush();
+                ->setPrenom("Prénom de l'auteur numéro $i")
+                ->setEmail("le mail de l'auteur numéro $i");
 
-        // je crée des catégories et des articles
-        for ($k = 0; $k < 4; $k++) {
-            // j'instancie la classe catégorie
+            $manager->persist($auteurs);
+
+            // Création des categories
             $categorie = new Categorie();
+            $categorie->setTitre("Titre Categorie $i")
+                ->setResume("Resume de categorie $i");
 
-            // je remplis ses champs
-            $categorie->setTitre("Titre de la catégorie numéro $k")
-                ->setResume("Résumé de ma catégorie");
-
-            // je persiste la catégorie
             $manager->persist($categorie);
 
-            // je crée mes articles
-            for ($j = 0; $j < 4; $j++) {
-                // j'instancie la classe article
+            // Creation des article pour chaque categorie 
+            for ($j = 1; $j <= 3; $j++) {
                 $articles = new Articles();
-                
-                // je remplis
-                $articles->setTitre("Titre de l'article numéro $j")
-                     ->setImage("la photo de mon image pour l'article numéro $j")
-                    ->setResume("Résumé de l'article numéro $j")
-                    ->setContenu("Contenu de l'article numéro $j")
+                $articles->setTitre("Titre Article $j")
+                    ->setResume("Resume de l'article $j")
+                    ->setContenu("Contenu de l'article $j")
+                    ->setImage("image.jpg")
                     ->setDate(new \DateTime())
-                    // ajout de la catégorie
                     ->setCategorie($categorie)
-                    // ajout de l'auteur
-                    ->setAuteur($auteurs)
-                    ;
+                    ->setAuteur($auteurs);
 
-                // je persiste mon article
                 $manager->persist($articles);
 
-                // je crée mes commentaires
-                for ($l=0; $l<5; $l++)
-        
-            $commentaire = new Commentaire;
-            
-            $commentaire->setAuteur("l'auteur du commentaire")
-            ->setEmail("Mail de l'auteur numéro $l")
-            ->setDate(new \DateTime())
-            ->setCommentaire("Le commentaire du numéro $l");
-        // je persiste mes commentaires
-        $manager->persist($commentaire);
+                // Creation des commentaires pour chaque article 
 
+                for ($m = 1; $m <= 3; $m++) {
+                    $com = new Commentaires();
+
+                    $com->setAuteur("Auteur du commentaire $m pour l'article $j")
+                        ->setMail("modou@free.fr")
+                        ->setDate(new \DateTime())
+                        ->setContenu("Contenue du commentaire")
+                        ->setArticle($articles)
+                        ;
+                }
             }
-            
-            
         }
-
-        // je flush mes données
         $manager->flush();
     }
-} 
-
 }
