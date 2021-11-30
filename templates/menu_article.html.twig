@@ -3,7 +3,8 @@
 {% block body %}					
 
 <ul class="dropdown-menu">
-    
+  <li> <a href="{{ path('app_register') }}"> s'inscrire </a></li>
+    <li><a href="{{ path('app_login') }}"> s'authentifier </a></li>
 		<li><a href="{{ path('livre') }}"> Livres </a></li>
         <li><a href="{{ path('index_auteur') }}"> La liste des auteurs </a></li>
         <li><a href="{{ path('categorie') }}"> Liste des Catégorie </a></li>

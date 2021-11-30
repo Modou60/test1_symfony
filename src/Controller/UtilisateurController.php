@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Utilisateurs;
+use App\Entity\User;
 use App\Form\UtilisateursType;
 use App\Repository\UtilisateursRepository;
+use App\Repository\UserRepository;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;

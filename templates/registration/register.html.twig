@@ -1,40 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Enregistrement d'un utilisateur!{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.nom, {
-        label: 'Nom'
-    }) }}
-    {{ form_row(registrationForm.prenom, {
-        label: 'prénom'
-    }) }}
-    {{ form_row(registrationForm.dateNaissance, {
-        label: 'Date de naissance'
-    }) }}
-        {{ form_row(registrationForm.username, {
-            label: 'Votre login'
-        }) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-        }) }}
-        {{ form_row(registrationForm.adresse, {
-            label: 'Votre adresse'
-        }) }}
-        {{ form_row(registrationForm.email, {
-            label: 'Votre email'
-        }) }}
-        {{ form_row(registrationForm.photo, {
-            label: 'Votre photo'
-        }) }}
-        {{ form_row(registrationForm.role, {
-            label: 'Votre rôle'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+<h1> Saisie d'un nouvel utilisateur</h1>
+{{ form(registrationForm) }}
 {% endblock %}

@@ -55,7 +55,6 @@
 							<td> {{ utilisateur.photo }} </td>
 							<td>{{ utilisateur.dateNaissance|date("d/m/Y") }}</td>
 							<td> {{ utilisateur.username }} </td>
-							<td> {{ utilisateur.plainPassword}}</td>
 							<td> {{ utilisateur.adresse }} </td>
 							<td> {{ utilisateur.email }} </td>
 							<td> {{ utilisateur.role }} </td>
@@ -73,7 +72,6 @@
 <ul>
 {# <li> <a href="{{ path('user_affichage',{'id':'abonner.id'}) }}"> Voir un utilisateur donné </a></li> #}
 {# <li> <a href="{{ path('formutilisateur') }}"> Ajouter un utilisateur </a></li> #}
-<li> <a href="{{ path('app_register') }}"> Ajouter un utilisateur </a></li>
 <li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a></li>
 </ul>
 	</div>
