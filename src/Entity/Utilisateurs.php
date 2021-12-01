@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Security\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UtilisateursRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
@@ -17,10 +18,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=UtilisateursRepository::class)
  * @UniqueEntity("email")
 * @UniqueEntity("username",
- * message = "Ce username '{{ value }}' est déjà pris")
+ * message = "Ce nom d'utilisateur '{{ value }}' est déjà pris")
  */
 
-class Utilisateurs
+class Utilisateurs extends User
 {
     /**
      * @ORM\Id
@@ -56,21 +57,6 @@ class Utilisateurs
      * @ORM\Column(type="date")
      */
     private $dateNaissance;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(
-     * message = "Ce champ ne doit pas être vide")
-     */
-    private $username;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(
-     * message = "Ce champ ne doit pas être vide")
-     */
-    private $plainPassword;
-
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
@@ -90,12 +76,6 @@ class Utilisateurs
      */
     private $photo;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $role;
-
-    
 
     public function getId(): ?int
     {
@@ -139,29 +119,6 @@ class Utilisateurs
         return $this;
     }
 
-    public function getusername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setusername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function getplainPassword(): ?string
-    {
-        return $this->plainPassword;
-    }
-
-    public function setplainPassword(string $plainPassword): self
-    {
-        $this->plainPassword = $plainPassword;
-
-        return $this;
-    }
 
     public function getAdresse(): ?string
     {
@@ -174,6 +131,7 @@ class Utilisateurs
 
         return $this;
     }
+
 
     public function getEmail(): ?string
     {
@@ -200,16 +158,5 @@ class Utilisateurs
         return $this;
     }
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(?string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
 
 }
