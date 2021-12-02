@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+
+<title>
+	{% title %}
+	l'affichages des données de {{ user.id }}
+{% endblock %}</title>
+{% block body %}
+<div>
+	<h1>
+		L'user numéro {{ user.id }}
+	</h1>
+
+	<br/><br/>
+	<hr>
+	<br/>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>
+					Id</th>
+				<th>
+					Nom</th>
+				<th>
+					Prénom
+				</th>
+				<th>
+					Date de naissance</th>
+				<th>
+					Adresse
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					Photo
+				</th>
+				<th>
+					Login
+				</th>
+				<th>
+					Mot de passe
+				</th>
+				<th>
+					Roles
+				</th>
+			</tr>
+		</thead>
+<tbody>
+    
+		<tr>
+			<td>
+				{{ user.id }} </td>
+			<td>
+				{{ user.nom }}</td>
+			<td>
+{{ user.prenom }}
+			</td>
+			<td>
+				{{ user.dateNaissance }}</td>
+			<td>
+				{{ user.adresse }}
+			</td>
+			<td>
+				{{ user.email }}
+			</td>
+			<td>
+				{{ user.photo }}
+			</td>
+			<td>
+				{{ user.login }}
+			</td>
+			<td>
+				{{ user.password }}
+			</td>
+			<td>
+				Roles
+			</td>
+		</tr>
+        
+    </tbody>
+</table>
+</div>
+</body>
+{% endblock %}

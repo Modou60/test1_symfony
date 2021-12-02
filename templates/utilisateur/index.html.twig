@@ -3,76 +3,80 @@
 {# {% form_theme formCreateArt 'bootstrap_4_layout.html.twig' %} #}
 
 {% block title %}
-	Gestion des utilisateurs!
+Gestion des utilisateurs!
 {% endblock %}
 
 {% block body %}
-	<style>
-			.contenu {
-				max-width: 800px;
-				width: 95%;
-				font: 18px / 1.5 sans-serif;
-			}
-			.contenu code {
-				background: #F5F5F5;
-				padding: 2px 6px;
-			}
-		</style>
+<style>
+	.contenu {
+		max-width: 800px;
+		width: 95%;
+		font: 18px / 1.5 sans-serif;
+	}
 
-	<div class="contenu">
-		<h1>Hello! bienvenu(e) à la page des utilisateurs!✅</h1>
-		<br/><br/>
-		<hr/>
-		<br/><br/>
+	.contenu code {
+		background: #F5F5F5;
+		padding: 2px 6px;
+	}
+</style>
 
-		<table border="1">
-			<tbody>
-				
+<div class="contenu">
+	<h1>Hello! bienvenu(e) à la page des utilisateurs!✅</h1>
+	<br /><br />
+	<hr />
+	<br /><br />
 
-					<thead>
-						<tr>
-							<th> id </th>
-							<th> nom </th>
-							<th> prenom </th>
-							<th> photo </th>
-							<th> dateNaissance </th>
-							<th> login </th>
-							<th> plainPassword</th>
-							<th> adresse </th>
-							<th> email </th>
-							<th>role</th>
-							<th> action </th>
-							<th> Modification </th>
-							<th> Suppression </th>
-						</tr>
-					</thead>
-					
-{% for utilisateur in utilisateurs %}
-					<tr>
-					<td> {{ utilisateur.id }} </td>
-							<td> {{ utilisateur.nom }} </td>
-							<td> {{ utilisateur.prenom }}</td>
-							<td> {{ utilisateur.photo }} </td>
-							<td>{{ utilisateur.dateNaissance|date("d/m/Y") }}</td>
-							<td> {{ utilisateur.username }} </td>
-							<td> {{ utilisateur.adresse }} </td>
-							<td> {{ utilisateur.email }} </td>
-							<td> {{ utilisateur.role }} </td>
+	<table border="1">
+		<tbody>
 
-							<td><a href="{{ path('utilisateur_id', {'id':utilisateur.id}) }}"> Voir les détails de l'utilisateur numéro {{ utilisateur.id }} </a></td>
-							<td><a href="{{ path('modif_utilisateur', {'id':utilisateur.id}) }}"> Modifier cette utilisateur </a></td>
-							<td><a href="{{ path('supprime_utilisateur', {'id':utilisateur.id}) }}"> Supprimer cette utilisateur </a></td>
-					</tr> 
-				{% endfor %}
 
-			</tbody>
-		</table>
+			<thead>
+				<tr>
+					<th> id </th>
+					<th> nom </th>
+					<th> prenom </th>
+					<th> photo </th>
+					<th> dateNaissance </th>
+					<th> login </th>
+					<th> plainPassword</th>
+					<th> adresse </th>
+					<th> email </th>
+					<th>role</th>
+					<th> action </th>
+					<th> Modification </th>
+					<th> Suppression </th>
+				</tr>
+			</thead>
 
-<br/><br/>
-<ul>
-{# <li> <a href="{{ path('user_affichage',{'id':'abonner.id'}) }}"> Voir un utilisateur donné </a></li> #}
-{# <li> <a href="{{ path('formutilisateur') }}"> Ajouter un utilisateur </a></li> #}
-<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a></li>
-</ul>
-	</div>
+			{% for utilisateur in utilisateurs %}
+			<tr>
+				<td> {{ utilisateur.id }} </td>
+				<td> {{ utilisateur.nom }} </td>
+				<td> {{ utilisateur.prenom }}</td>
+				<td> {{ utilisateur.photo }} </td>
+				<td>{{ utilisateur.dateNaissance|date("d/m/Y") }}</td>
+				<td> {{ utilisateur.username }} </td>
+				<td> {{ utilisateur.adresse }} </td>
+				<td> {{ utilisateur.email }} </td>
+				<td> {{ utilisateur.role }} </td>
+
+				<td><a href="{{ path('utilisateur_id', {'id':utilisateur.id}) }}"> Voir les détails de l'utilisateur
+						numéro {{ utilisateur.id }} </a></td>
+				<td><a href="{{ path('modif_utilisateur', {'id':utilisateur.id}) }}"> Modifier cette utilisateur </a>
+				</td>
+				<td><a href="{{ path('supprime_utilisateur', {'id':utilisateur.id}) }}"> Supprimer cette utilisateur
+					</a></td>
+			</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+
+	<br /><br />
+	<ul>
+		{# <li> <a href="{{ path('user_affichage',{'id':'abonner.id'}) }}"> Voir un utilisateur donné </a></li> #}
+		{# <li> <a href="{{ path('formutilisateur') }}"> Ajouter un utilisateur </a></li> #}
+		<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a></li>
+	</ul>
+</div>
 {% endblock %}

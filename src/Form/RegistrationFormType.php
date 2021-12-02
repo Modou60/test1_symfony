@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\User;
+use PhpParser\Parser\Multiple;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -41,23 +43,24 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('adresse')
-            ->add('email')
+            ->add('email', EmailType::class)
             ->add('photo')
-            //  ->add('roles', ChoiceType::class, [
-            //     'choices' => ["Validé" => "Validé", "en attente" => "en attente"]
-            // ])
-             ->add('agreeTerms', CheckboxType::class, [
+            ->add('roles', ChoiceType::class, [
+                'choices' => ["Admin" => "ROLE_ADMIN", "User" => "ROLE_USER", "éditeur" => "ROLE_EDITOR"],
+                // multiple => true
+                // expanded => false
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => "Vous devez accepter les termes d'accords.",
                     ])
                 ]
-                    ])
-                    ->add('Envoyer', SubmitType::class, [
-                        'label' => 'Envoyer'
-                    ]);
-            
+            ])
+            ->add('Envoyer', SubmitType::class, [
+                'label' => 'Envoyer'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
