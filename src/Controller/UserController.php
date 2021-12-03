@@ -35,7 +35,7 @@ class UserController extends AbstractController
     public function edituser(Request $request, User $user, EntityManagerInterface $manager): Response
     {
         // création du formulaire
-        $form =$this->createForm(RegistrationFormType::class);
+        $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
 // test du formulaire

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}liste des utilisateurs!!{% endblock %}
 
 {% block body %}
 <style>
@@ -10,7 +10,7 @@
 
 <div>
 	<h1>
-		Les users
+		Les utilisateurs
 	</h1>
 
 	<br /><br />
@@ -50,6 +50,11 @@
 			<th>
 				Action
 			</th>
+			<th>
+				Modifier
+			</th>
+		
+
 		</thead>
 		<tbody>
 			{% for user in users %}
@@ -82,11 +87,10 @@
 				<td>
 					{{ role }}
 				</td>
+				<td> <a href="{{ path('user_id', {'id' :user.id}) }}"> Voir les détails de cet utilisateurs </a></td>
+				<td> <a href="{{ path('edit_user', {'id':user.id}) }}"> Modifier cet utilisateurs </a></td>
 				{% endfor %}
 				{% endfor %}
-
-				<td> <a href="{{ path('user_id', {'id':user.id}) }}"> Voir les détails de cet utilisateurs </a></td>
-				<td> <a href="{{ path('user_id', {'id':user.id}) }}"> Modifier cet utilisateurs </a></td>
 			</tr>
 
 		</tbody>

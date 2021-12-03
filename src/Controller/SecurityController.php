@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +17,10 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        
+    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
+    {    
          if ($this->getUser()) {
-             return $this->redirectToRoute('livre');
+             return $this->redirectToRoute('indexliste');
          }
 
         //  get the login error if there is one

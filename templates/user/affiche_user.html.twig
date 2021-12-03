@@ -1,18 +1,17 @@
 {% extends "base.html.twig" %}
 
-<title>
-	{% title %}
-	l'affichages des données de {{ user.id }}
-{% endblock %}</title>
+{% block title %}
+l'affichages des données de {{ user.id }}
+{% endblock %}
 {% block body %}
 <div>
 	<h1>
 		L'user numéro {{ user.id }}
 	</h1>
 
-	<br/><br/>
+	<br /><br />
 	<hr>
-	<br/>
+	<br />
 	<table border="1">
 		<thead>
 			<tr>
@@ -45,40 +44,47 @@
 				</th>
 			</tr>
 		</thead>
-<tbody>
-    
-		<tr>
-			<td>
-				{{ user.id }} </td>
-			<td>
-				{{ user.nom }}</td>
-			<td>
-{{ user.prenom }}
-			</td>
-			<td>
-				{{ user.dateNaissance }}</td>
-			<td>
-				{{ user.adresse }}
-			</td>
-			<td>
-				{{ user.email }}
-			</td>
-			<td>
-				{{ user.photo }}
-			</td>
-			<td>
-				{{ user.login }}
-			</td>
-			<td>
-				{{ user.password }}
-			</td>
-			<td>
-				Roles
-			</td>
-		</tr>
-        
-    </tbody>
-</table>
+		<tbody>
+
+			<tr>
+				<td>
+					{{ user.id }} </td>
+				<td>
+					{{ user.nom }}</td>
+				<td>
+					{{ user.prenom }}
+				</td>
+				<td>
+					{{ user.dateNaissance|date("d/m/Y") }}</td>
+				<td>
+					{{ user.adresse }}
+				</td>
+				<td>
+					{{ user.email }}
+				</td>
+				<td>
+					{{ user.photo }}
+				</td>
+				<td>
+					{{ user.username }}
+				</td>
+				<td>
+					{{ user.password }}
+				</td>
+				<td>
+					{% for role in user.roles %}
+					{{ role }}
+					{% endfor %}
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<ul>
+		<li><a href="{{ path('indexliste') }}"> Revenir à la page des utilisateurs</a></li>
+		<li><a href="{{ path('demarrage') }}"> Revenir à l'accueil</a></li>
+	</ul>
 </div>
 </body>
 {% endblock %}
