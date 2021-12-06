@@ -8,29 +8,31 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 // use phpDocumentor\Reflection\Location;
+use Faker;
 
 class Locationfixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i = 0; $i <= 40; $i++) {
+        $faker = faker\Factory::create('fr_fr');
+        for ($i = 0; $i <= 10; $i++) {
             $location = new Location;
 $accessibility = ["Validée", "En attente", "Anulée"];
 shuffle($accessibility);
             $location->setDate(new \DateTime())
-                ->setTitre(" Titre de la location n° $i")
-                ->setCategorie(" Catégorie de la location n° $i ")
-                ->setDescription(" Description de la location n° $i ")                
+                ->setTitre($faker->title())
+                ->setCategorie($faker->company())
+                ->setDescription($faker->sentence())                
                 ->setValeur(mt_rand(0,1000))                
-                ->setAdresse(" l'adresse de la location n° $i ")                
+                ->setAdresse($faker->address())
                 ->setAccessibility($accessibility[0])                
-                ->setAlaune(" La une de la location n° $i")                
+                ->setAlaune($faker->boolean(50))                
                 ->setImage(" image de la location n° $i ");
 
         }
 
 
-        // $manager->persist($location);
+         $manager->persist($location);
 
         $manager->flush();
     }

@@ -2,49 +2,51 @@
 
 namespace App\DataFixtures;
 
+// use Faker\Factory;
 use App\Entity\Auteurs;
 use App\Entity\Articles;
 use App\Entity\Categorie;
-use App\Entity\Commentaire;
 use App\Entity\Commentaires;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\Persistence\ObjectManager;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Egulias\EmailValidator\Parser\Comment;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\DBAL\Driver\IBMDB2\Exception\Factory;
 use Symfony\Component\Validator\Constraints\DateTime;
-// use Faker;
+ use Faker;
 
 class ArticlesFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $faker = faker\Factory::create('fr_Fr');
+         $faker = Faker\Factory::create('fr_FR');
 
         // je remplis mes auteurs
-        for ($i = 1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
 
             $auteurs = new Auteurs();
-            $auteurs->setNom("nom de l'auteur numéro $i")
-                ->setPrenom("Prénom de l'auteur numéro $i")
-                ->setEmail("le mail de l'auteur numéro $i");
+            $auteurs->setNom($faker->lastName)
+                ->setPrenom($faker->firstName())
+                ->setEmail($faker->email);
 
             $manager->persist($auteurs);
 
             // Création des categories
+            
             $categorie = new Categorie();
-            $categorie->setTitre("Titre Categorie $i")
-                ->setResume("Resume de categorie $i");
+            $categorie->setTitre($faker->title())
+                ->setResume($faker->sentence());
 
             $manager->persist($categorie);
 
             // Creation des article pour chaque categorie 
-            for ($j = 1; $j <= 3; $j++) {
+            for ($j = 1; $j <= 10; $j++) {
                 $articles = new Articles();
-                $articles->setTitre("Titre Article $j")
-                    ->setResume("Resume de l'article $j")
-                    ->setContenu("Contenu de l'article $j")
-                    ->setImage("image.jpg")
-                    ->setDate(new \DateTime())
+                $articles->setTitre($faker->title())
+                    ->setResume($faker->sentence())
+                    ->setContenu($faker->sentence())
+                    ->setImage($faker->sentence())
+                    ->setDate($faker->dateTime())
                     ->setCategorie($categorie)
                     ->setAuteur($auteurs);
 
@@ -52,13 +54,13 @@ class ArticlesFixtures extends Fixture
 
                 // Creation des commentaires pour chaque article 
 
-                for ($m = 1; $m <= 3; $m++) {
+                for ($m = 1; $m <= 10; $m++) {
                     $com = new Commentaires();
 
                     $com->setAuteur("Auteur du commentaire $m pour l'article $j")
-                        ->setMail("modou@free.fr")
-                        ->setDate(new \DateTime())
-                        ->setContenu("Contenue du commentaire")
+                    ->setMail($faker->email())
+                        ->setDate($faker->dateTime())
+                        ->setContenu($faker->sentence())
                         ->setArticle($articles)
                         ;
                 }
