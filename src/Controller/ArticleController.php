@@ -32,6 +32,7 @@ class ArticleController extends AbstractController
         return $this->render('article/index.html.twig', []);
     }
 
+// affichage de tous les articles
 
     /**
      * @Route("/", name="livre")
@@ -42,6 +43,7 @@ class ArticleController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Articles::class);
         $produit = $repo->findAll();
         return $this->render('article/livre.html.twig', [
+            'totalarticles' => count($produit),
             'articles' => $produit,
         ]);
     }

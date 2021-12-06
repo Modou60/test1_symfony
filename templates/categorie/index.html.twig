@@ -52,7 +52,14 @@
 </table>
 
 <br/><br/>
+<hr/>
+<br/>
 
+{# <p> Le total des catégories est de {{ totalcategorie }}</p> #}
+<p> Le total des catégories est {{ categories | length }}</p>
+<br/><br/>
+<hr/>
+<br/>
 <ul>
 <li> <a href="{{ path('fcategorie')}}"> Ajouter une nouvelle catégorie </a> </li>
 <li> <a href="{{ path('demarrage')}}"> Revenir à la page d'accueil </a> </li>

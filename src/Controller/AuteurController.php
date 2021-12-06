@@ -25,10 +25,11 @@ class AuteurController extends AbstractController
     public function index(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Auteurs::class);
-        $art = $repo->findAll();
+        $auteurs = $repo->findAll();
 
         return $this->render('auteur/index.html.twig', [
-            'auteurs' => $art,
+            'totalauteurs' => count($auteurs),
+            'auteurs' => $auteurs,
         ]);
     }
 

@@ -27,6 +27,7 @@ class CategorieController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Categorie::class);
         $cat = $repo->findAll();
         return $this->render('categorie/index.html.twig', [
+            'totalcategorie' => count($cat),
             'categories' => $cat,
         ]);
     }
