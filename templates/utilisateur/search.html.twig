@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Résultat d'une recherche {% endblock %}
+
+{% block body %}
+
+<div>
+    <h1> le résultat de la recherche </h1>
+
+    <br><br>
+    <hr>
+    <br>
+
+    <table>
+        <thead>
+            <th> Nom </th>
+            <th> Prénom </th>
+            <th> Email </th>
+        </thead>
+
+        <tbody>
+            {% for utilisateur in results %}
+            <tr>
+                <td> utilisateur.nom </td>
+                <td> utilisateur.prenom </td>
+                <td> utilisateur.email </td>
+            </tr>
+                
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

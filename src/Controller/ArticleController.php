@@ -173,6 +173,35 @@ class ArticleController extends AbstractController
     }
 
 
+
+    // affichage d'un article
+    /**
+     * @param $id
+     * @param ArticlesRepository, $articlesrepo
+     * @Route("/{id}", name="recherche_id", methods={"GET"})    
+     */
+    public function recherche($id, ArticlesRepository $articlesrepo)
+    {
+        // appel de doctrine et le repository
+        // $articlesrepo = $this->getDoctrine()->getRepository(Articles::class);
+        // on recherche l'article avec son id
+        $article = $articlesrepo->find($id);
+
+        // on passe le tableau à twig
+
+        if (!$article)
+        {
+            throw $this->createNotFoundException(
+                'Desolé il y a Aucun Auteur pour ce id : '.$id
+            );
+        }
+
+        return $this->render('article/result_recherche.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
+
     /**
      * @Route("/{id}/edit", name="edit_modifier", methods={"GET", "POST"})
      */

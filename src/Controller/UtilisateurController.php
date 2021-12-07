@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Expr\FuncCall;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,15 +66,38 @@ return $this->render('utilisateur/nouvelutilisateur.html.twig',[
 }
 
     /**
+     * @param $id
+     * @param UtilisateursRepository, $utilisateursrepo
+     * @Route("/{id}", name="util_id",methods={"GET"})
+     */
+    public function iduser( $id, UtilisateursRepository $utilisateursrepo): Response
+    {
+        //recherche d'un utilisateur avec son id
+        $utilisateur = $utilisateursrepo->find($id);
+
+        // Teste
+        if (!$utilisateur)
+        {
+            // throw $this->createNotFoundException(newresponse('Désolé cet id n'existe pas. Veuillez recommencer.'));
+        }
+        return $this->render('utilisateur/affichageuser.html.twig', [
+            
+            'abonne' => $utilisateur,
+        ]);
+    }
+
+
+    /**
      * @Route("/{id}", name="utilisateur_id",methods={"GET"})
      */
-    public function iduser(Utilisateurs $utilisateurs): Response
+    public function cdherche_id(Utilisateurs $utilisateurs): Response
     {
         return $this->render('utilisateur/affichageuser.html.twig', [
             
             'abonne' => $utilisateurs,
         ]);
     }
+
 
 
     /**

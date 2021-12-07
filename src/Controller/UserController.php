@@ -53,7 +53,28 @@ if ($form->isSubmitted() && $form->isValid())
         'formuser' => $form->createView(),
     ]);
 }
-    
+
+
+/**
+ * @param $id
+ * @param UtilisateursRepository, $utilisateursrepo
+ * @Route("/search", name="search", methods={"GET"})
+ */
+public function searchutilisateur(UtilisateursRepository $utilisateursrepo)
+{
+    $utilisateurs = $utilisateursrepo->findBy(array
+    (
+        'nom' => 'dupon',
+        'email' => 'fafa@free.fr'), array (
+            'prenom' => "DESC"), 1,0);
+        
+            return $this->render('utilisateur/search.html.twig',[
+                'results' => $utilisateurs,
+            ]);
+}
+
+
+
     /**
      * @Route("/{id}", name="user_id", methods={"GET"})
      */

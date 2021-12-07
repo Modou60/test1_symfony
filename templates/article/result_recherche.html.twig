@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+
+{# {% form_theme formCreateArt 'bootstrap_4_layout.html.twig' %} #}
+{% block title %} Affichage d'un article! {% endblock %}
+
+{% block body %}
+
+<h1> L'Affichage  de l'article numéro {{ articles.id }} </h1>
+
+<br/><br/>
+<hr/>
+<br/><br/>
+
+<table class="table border="1">
+<tbody>
+<thead>
+<tr>
+<th>id</th>
+<th>titre</th>
+<th>contenu</th>
+<th>images</th>
+<th>resume</th>
+<th>date</th>
+</tr>
+</thead>
+
+<tr>
+<td>{{ article.id }}</td>
+<td>{{ article.titre }}</td>
+<td>{{ article.contenu }}</td>
+<td>{{ article.image }}</td>
+<td>{{ article.resume }}</td>
+<td>{{ article.date|date("d/m/Y") }}</td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+
+<h1> Les auteurs de cet article </h1>
+<br/>
+<ul>
+<li> {{ auteur.nom }} </li>
+</ul>
+
+<br/><br/>
+
+<h1> liste des commentaires </h1>
+<br/>
+
+{% for commentaire in articles.commentaires %}
+<p>Auteur : {{ commentaire.auteur }} E-mail : {{ commentaire.mail }} </p>
+<p>
+date : {{commentaire.date|date("d/m/Y") }} <br/>
+{{ commentaire.contenu }}
+</p>    
+{% endfor %}
+
+<br/><br/>
+
+<h1> Laissez un commentaire si vous le souhaitez ! </h1>
+
+<br/>
+
+<hr/>
+<br/>
+
+{{ form(formcommentaire) }}
+
+<br/><br/>
+
+<ul>
+<li> <a href="{{ path('livre') }}"> Revenir à la page des livres </a> </li>
+<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a> </li>
+</ul>
+{% endblock %}
