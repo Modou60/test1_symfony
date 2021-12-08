@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,16 +61,17 @@ if ($form->isSubmitted() && $form->isValid())
  * @param UtilisateursRepository, $utilisateursrepo
  * @Route("/search", name="search", methods={"GET"})
  */
-public function searchutilisateur(UtilisateursRepository $utilisateursrepo)
+public function searchutilisateur(User $user, UserRepository $userrepo)
 {
-    $utilisateurs = $utilisateursrepo->findBy(array
+    $utilisateurs = $userrepo->findBy(array
     (
         'nom' => 'dupon',
         'email' => 'fafa@free.fr'), array (
             'prenom' => "DESC"), 1,0);
         
-            return $this->render('utilisateur/search.html.twig',[
+            return $this->render('user/search.html.twig',[
                 'results' => $utilisateurs,
+                'user' => $user,
             ]);
 }
 
