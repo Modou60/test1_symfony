@@ -72,6 +72,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $photo;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $civilite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -224,6 +229,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(string $civilite): self
+    {
+        $this->civilite = $civilite;
 
         return $this;
     }

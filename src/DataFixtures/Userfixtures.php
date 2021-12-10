@@ -20,6 +20,7 @@ class Userfixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         for ($i = 1; $i <= 10; $i++) {
             $user = new User();
+
             $user->setUsername($faker->firstName())
             ->setPassword($faker->password())
             // ->setRoles()
