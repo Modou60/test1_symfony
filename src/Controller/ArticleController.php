@@ -248,4 +248,10 @@ class ArticleController extends AbstractController
             'formedit' => $formedit->createView(),
         ]);
     }
-}
+
+    // recherche d'article publié
+    // /**
+    //  * @Route("/article_recherche", name="article_recherche", methods={"GET"})
+    //  */
+    // public function 
+ }

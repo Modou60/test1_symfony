@@ -62,7 +62,7 @@
 						<td>
 							{{auteur.email}}
 						</td>
-
+<td> <a href="{{ path('auteur_recherche', {'id':auteur.id})}}"> détail d'un auteur</a> </td></t>
 						 <ul><td>{% for art in auteur.articles %}
 							 {{ art.titre }}
 						 {% endfor %}

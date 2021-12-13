@@ -82,6 +82,12 @@ class Articles
      */
     private $auteur;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -205,4 +211,19 @@ class Articles
 
         return $this;
     }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    
+
 }

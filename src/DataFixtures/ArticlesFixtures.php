@@ -14,6 +14,8 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\DBAL\Driver\IBMDB2\Exception\Factory;
 use Symfony\Component\Validator\Constraints\DateTime;
  use Faker;
+use PhpParser\Parser\Multiple;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ArticlesFixtures extends Fixture
 {
@@ -42,13 +44,17 @@ class ArticlesFixtures extends Fixture
             // Creation des article pour chaque categorie 
             for ($j = 1; $j <= 10; $j++) {
                 $articles = new Articles();
+                $statut = ["publié", "depublié", "archivé"];
+                shuffle($statut);
                 $articles->setTitre($faker->title())
                     ->setResume($faker->sentence())
                     ->setContenu($faker->sentence())
                     ->setImage($faker->sentence())
                     ->setDate($faker->dateTime())
+                     
                     ->setCategorie($categorie)
-                    ->setAuteur($auteurs);
+                    ->setAuteur($auteurs)
+                    ->setStatut($statut[0]);
 
                 $manager->persist($articles);
 

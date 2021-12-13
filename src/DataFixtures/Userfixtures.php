@@ -20,24 +20,26 @@ class Userfixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
         for ($i = 1; $i <= 10; $i++) {
             $user = new User();
-
-            $user->setUsername($faker->firstName())
-            ->setPassword($faker->password())
-            // ->setRoles()
+            $civilite = ["Madame", "Monsieur"];
+            shuffle($civilite);
+            $user->setCivilite($civilite[0])
+            ->setUsername($faker->firstName())
+                ->setPassword($faker->password())
+                // ->setRoles()
                 ->setNom($faker->lastName())
                 ->setPrenom($faker->firstName())
                 ->setDateNaissance($faker->dateTime())
                 ->setAdresse($faker->address())
                 ->setEmail($faker->email())
                 ->setPhoto(" photo N° $i ");
-                
 
-            
-        
 
-         $manager->persist($user);
 
-        $manager->flush();
+
+
+            $manager->persist($user);
+
+            $manager->flush();
+        }
     }
-}
 }
