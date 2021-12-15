@@ -60,11 +60,11 @@ class CommentaireController extends AbstractController
     /**
      * @Route("/{id}", name="afficher_com", methods={"GET"})
      */
-    public function affichercom(Commentaire $commentaire): Response
+    public function affichercom(Commentaires $commentaires): Response
     {
         return $this->render('commentaire/affichecom.html.twig', [
-            'id' => $commentaire->getId(),
-            'commentaires' => $commentaire,
+            'id' => $commentaires->getId(),
+            'commentaires' => $commentaires,
         ]);
     }
 }

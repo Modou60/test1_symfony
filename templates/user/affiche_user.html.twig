@@ -1,0 +1,90 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+l'affichages des données de {{ user.id }}
+{% endblock %}
+{% block body %}
+<div>
+	<h1>
+		L'user numéro {{ user.id }}
+	</h1>
+
+	<br /><br />
+	<hr>
+	<br />
+	<table border="1">
+		<thead>
+			<tr>
+				<th>
+					Id</th>
+				<th>
+					Nom</th>
+				<th>
+					Prénom
+				</th>
+				<th>
+					Date de naissance</th>
+				<th>
+					Adresse
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					Photo
+				</th>
+				<th>
+					Login
+				</th>
+				<th>
+					Mot de passe
+				</th>
+				<th>
+					Roles
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr>
+				<td>
+					{{ user.id }} </td>
+				<td>
+					{{ user.nom }}</td>
+				<td>
+					{{ user.prenom }}
+				</td>
+				<td>
+					{{ user.dateNaissance|date("d/m/Y") }}</td>
+				<td>
+					{{ user.adresse }}
+				</td>
+				<td>
+					{{ user.email }}
+				</td>
+				<td>
+					{{ user.photo }}
+				</td>
+				<td>
+					{{ user.username }}
+				</td>
+				<td>
+					{{ user.password }}
+				</td>
+				<td>
+					{% for role in user.roles %}
+					{{ role }}
+					{% endfor %}
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<ul>
+		<li><a href="{{ path('indexliste') }}"> Revenir à la page des utilisateurs</a></li>
+		<li><a href="{{ path('demarrage') }}"> Revenir à l'accueil</a></li>
+	</ul>
+</div>
+</body>
+{% endblock %}

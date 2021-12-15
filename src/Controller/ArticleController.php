@@ -32,6 +32,7 @@ class ArticleController extends AbstractController
         return $this->render('article/index.html.twig', []);
     }
 
+// affichage de tous les articles
 
     /**
      * @Route("/", name="livre")
@@ -42,6 +43,7 @@ class ArticleController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Articles::class);
         $produit = $repo->findAll();
         return $this->render('article/livre.html.twig', [
+            'totalarticles' => count($produit),
             'articles' => $produit,
         ]);
     }
@@ -171,6 +173,35 @@ class ArticleController extends AbstractController
     }
 
 
+
+    // affichage d'un article
+    /**
+     * @param $id
+     * @param ArticlesRepository, $articlesrepo
+     * @Route("/{id}", name="recherche_id", methods={"GET"})    
+     */
+    public function recherche($id, ArticlesRepository $articlesrepo)
+    {
+        // appel de doctrine et le repository
+        // $articlesrepo = $this->getDoctrine()->getRepository(Articles::class);
+        // on recherche l'article avec son id
+        $article = $articlesrepo->find($id);
+
+        // on passe le tableau à twig
+
+        if (!$article)
+        {
+            throw $this->createNotFoundException(
+                'Desolé il y a Aucun Auteur pour ce id : '.$id
+            );
+        }
+
+        return $this->render('article/result_recherche.html.twig', [
+            'article' => $article,
+        ]);
+    }
+
+
     /**
      * @Route("/{id}/edit", name="edit_modifier", methods={"GET", "POST"})
      */
@@ -217,4 +248,10 @@ class ArticleController extends AbstractController
             'formedit' => $formedit->createView(),
         ]);
     }
-}
+
+    // recherche d'article publié
+    // /**
+    //  * @Route("/article_recherche", name="article_recherche", methods={"GET"})
+    //  */
+    // public function 
+ }

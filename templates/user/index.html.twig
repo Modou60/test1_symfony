@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des utilisateurs!!{% endblock %}
+
+{% block body %}
+<style>
+	.example-wrapper {
+		margin: 1em auto;
+		max-width: 800px;
+		width: 95%;
+		font: 18px/1.5 sans-serif;
+	}
+
+	.example-wrapper code {
+		background: #F5F5F5;
+		padding: 2px 6px;
+	}
+</style>
+
+<div>
+	<h1>
+		Les utilisateurs
+	</h1>
+
+	<br /><br />
+	<hr>
+	<br />
+	<table border="1">
+		<thead>
+			<tr>
+				<th>
+					Id</th>
+				<th>
+					Nom</th>
+				<th>
+					Prénom
+				</th>
+				<th>
+					Date de naissance</th>
+				<th>
+					Adresse
+				</th>
+				<th>
+					Email
+				</th>
+				<th>
+					Photo
+				</th>
+				<th>
+					Login
+				</th>
+				<th>
+					Mot de passe
+				</th>
+				<th>
+					Roles
+				</th>
+				<th>
+					Statut
+				</th>
+
+				<th>
+					Action
+				</th>
+				<th>
+					Modifier
+				</th>
+				<th>
+					Editer
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+			<tr>
+				<td>
+					{{ user.id }} </td>
+
+				<td> {{ user.civilite }} </td>
+
+				<td>
+					{{ user.nom }}</td>
+				<td>
+					{{ user.prenom }}
+				</td>
+				<td>
+					{{ user.dateNaissance|date("d/m/Y") }}</td>
+				<td>
+					{{ user.adresse }}
+				</td>
+				<td>
+					{{ user.email }}
+				</td>
+				<td>
+					{{ user.photo }}
+				</td>
+				<td>
+					{{ user.username }}
+				</td>
+				<td>
+					{{ user.password }}
+				</td>
+				{% for role in user.roles %}
+				<td>
+					{{ role }}
+				</td>
+				{% endfor %}
+
+				<td> <a href="{{ path('user_id', {'id' :user.id}) }}"> Voir les détails de cet utilisateurs </a></td>
+				<td> <a href="{{ path('edit_user', {'id':user.id}) }}"> Modifier cet utilisateurs </a></td>
+				{% endfor %}
+			</tr>
+
+		</tbody>
+	</table>
+
+	<br><br>
+	<ul>
+		{# <li> <a href="{{ path('search', {'id':user.id})}}"> Recherche détail d'un utilisateur </a></li> #}
+	</ul>
+
+	<ul>
+		<li> <a href="{{ path('demarrage')}}"> Revenir à la page d'accueil </a> </li>
+	</ul>
+</div>
+{% endblock %}

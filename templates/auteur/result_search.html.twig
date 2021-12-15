@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+tit{% block title %} les détails d'un auteur {% endblock %}
+
+{% block body %}
+<div>
+    <h1> détails d'un auteur! </h1>
+
+    <br/>br/>
+
+    <table>
+        <thead>
+            <tr>
+            <th> id </th>
+            <th> Nom </th>
+            <th> Prénom </th>
+            <th> Email </th>
+        </tr>
+        </thead>
+
+<tr>
+<td> {{ auteur.id}} </td>
+<td> {{ auteur.nom }} </td>
+<td> {{ auteur.prenom }} </td>
+<td> {{ auteur.email }} </td>
+<td> {{ auteur.articles }} </td>
+</TR>
+    </table>
+
+
+</div>>
+{% endblock %}

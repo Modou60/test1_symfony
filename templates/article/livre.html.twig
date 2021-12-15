@@ -5,35 +5,36 @@
 {% block title %} Gestion des livres! {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
+<style>
+	.example-wrapper {
+		margin: 1em auto;
+		max-width: 800px;
+		width: 95%;
+		font: 18px / 1.5 sans-serif;
+	}
 
-	<div class="example-wrapper">
-		<h1>
-			Bienvenu(e) à la page de la liste des livres! ✅</h1>
-		<br/><br/>
-		<hr/>
-		<br/>
-		<div id="menu" class="menu">
-			<ul></ul>
-		</div>
-		<table class="table" border="1">
-			<tbody>
-				
-					{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+	.example-wrapper code {
+		background: #F5F5F5;
+		padding: 2px 6px;
+	}
+</style>
 
-					<thead>
-					<tr>
+<div class="example-wrapper">
+	<h1>
+		Bienvenu(e) à la page de la liste des livres! ✅</h1>
+	<br /><br />
+	<hr />
+	<br />
+	<div id="menu" class="menu">
+		<ul></ul>
+	</div>
+	<table class="table" border="1">
+		<tbody>
+
+			{# https://twig.symfony.com/doc/3.x/tags/for.html #}
+
+			<thead>
+				<tr>
 					<th> id </th>
 					<th> Titre </th>
 					<th> Contenu </th>
@@ -41,44 +42,56 @@
 					<th> Image </th>
 					<th> Résumé </th>
 					<th> Catégorie </th>
+					<th> Statut </th>
 					<th> Action </th>
 					<th> Modifier </th>
 					<th> Supprimer </th>
-					</tr>
-					</thead>
+				</tr>
+			</thead>
 
-					{% for article in articles %}
-					
-					<tr>
-					<td> {{ article.id }} </td>
-					<td> {{ article.titre }} </td>
-					<td> {{ article.contenu }} </td>
-					<td> {{ article.date|date("d/m/Y") }} </td>
-					<td> {{ article.image }} </td>
-					<td> {{ article.resume }} </td>
-					<td> {{ article.categorie.titre }} </td>
-					<td><a href="{{ path('article_id', {'id': article.id}) }}"> Afficher l'article n° {{article.id}} </a></td>
-						<td><a href="{{ path('edit_modifier', {'id': article.id}) }}"> Modifier l'article n° {{article.id}} </a></td>
-												<td><a href="{{ path('del_article', {'id': article.id}) }}"> Supprimer l'article n° {{article.id}} </a></td>
-												<td><a href="{{ path('index_commentaire') }}"> Liste des commentaires </a></td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="5">Vous n'avez pas d'enregistrement!
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+			{% for article in articles %}
 
-		<ul>
+			<tr>
+				<td> {{ article.id }} </td>
+				<td> {{ article.titre }} </td>
+				<td> {{ article.contenu }} </td>
+				<td> {{ article.date|date("d/m/Y") }} </td>
+				<td> {{ article.image }} </td>
+				<td> {{ article.resume }} </td>
+				<td> {{ article.categorie.titre }} </td>
+				<td> {{ article.statut }}</td>
+				<td><a href="{{ path('article_id', {'id': article.id}) }}"> Afficher l'article n° {{article.id}} </a>
+				</td>
+				<td><a href="{{ path('edit_modifier', {'id': article.id}) }}"> Modifier l'article n° {{article.id}} </a>
+				</td>
+				<td><a href="{{ path('del_article', {'id': article.id}) }}"> Supprimer l'article n° {{article.id}} </a>
+				</td>
+				<td><a href="{{ path('index_commentaire') }}"> Liste des commentaires </a></td>
+				<td>
+					<li><a href="{{ path('recherche_id',{'id' :article.id}) }}"> recherche </a></li>
+				</td>
+			</tr>
+			{% else %}
+			<tr>
+				<td colspan="5">Vous n'avez pas d'enregistrement!
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<br /><br />
+	<hr />
+	<br />
+
+	<p> le total des articles est de {{ totalarticles }}</p>
+	<ul>
 		{# <li> <a href="{{ path('edit_modifier') }}"> Modifier un article</a> </li> #}
-			{# <li><a href="{{ path('art_affichage',{'id': 'prod.id'}) }}">Consulter un livre donné</a></li> #}
-			{# <li><a href="{{ path('article.nouvelarticle')}}">Ajouter un nouveau livre</a></li> #}
-			<li><a href="{{ path('formulaire')}}">Ajouter un nouveau livre via formulaire type</a></li>
-			<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a> </li>
-			
-		</ul>
+		{# <li><a href="{{ path('art_affichage',{'id': 'prod.id'}) }}">Consulter un livre donné</a></li> #}
+		{# <li><a href="{{ path('article.nouvelarticle')}}">Ajouter un nouveau livre</a></li> #}
+		<li><a href="{{ path('formulaire')}}">Ajouter un nouveau livre via formulaire type</a></li>
+		<li> <a href="{{ path('demarrage') }}"> Revenir à la page d'accueil </a> </li>
 
-	</div>
+	</ul>
+
+</div>
 </div>{% endblock %}

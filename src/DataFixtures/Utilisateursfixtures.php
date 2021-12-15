@@ -6,24 +6,31 @@ use App\Entity\Utilisateurs;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Egulias\EmailValidator\Parser\Comment;
+use Faker;
+use Doctrine\DBAL\Types\DateTimeType;
 
 class Utilisateursfixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 50; $i++) {
+        $faker = Faker\Factory::create('fr_FR');
+        for ($i = 1; $i < 20; $i++) {
             $utilisateurs = new Utilisateurs();
-            $rol = ["gestionnaire", "locataire", "propriétaire", "administrateur"];
-            shuffle($rol);
-            $utilisateurs->setNom(" Nom N°$i ")
-                ->setPrenom(" Prénom N° $i ")
+            $role = ["Admin", "User", "Editeur"];
+            shuffle($role);
+            $civilite = ["madame", "monsieur"];
+            shuffle($civilite);
+            $utilisateurs->setCivilite($civilite[0])
+                ->setNom($faker->lastName)
+                ->setPrenom($faker->firstName())
                 ->setDateNaissance(new DateTime())
-                ->setLogin(" Login N° $i ")
-                ->setPassWord(" Password N° $i ")
-                ->setAdresse(" adresse N° $i ")
-                ->setEmail(" Email N° $i ")
+                ->setAdresse($faker->address())
+                ->setEmail($faker->email())
                 ->setPhoto(" photo N° $i ")
-                ->setRole($rol[0]);
+                ->setUsername($faker->userName)
+                ->setPassword($faker->password())
+                ->setRoles($role[0]);
 
             $manager->persist($utilisateurs);
             $manager->flush();

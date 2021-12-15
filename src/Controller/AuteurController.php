@@ -25,10 +25,11 @@ class AuteurController extends AbstractController
     public function index(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Auteurs::class);
-        $art = $repo->findAll();
+        $auteurs = $repo->findAll();
 
         return $this->render('auteur/index.html.twig', [
-            'auteurs' => $art,
+            'totalauteurs' => count($auteurs),
+            'auteurs' => $auteurs,
         ]);
     }
 
@@ -68,7 +69,7 @@ class AuteurController extends AbstractController
     public function afficherAuteur(Auteurs $auteurs): Response
     {
         return $this->render('auteur/affiche_auteur.html.twig', [
-             'article' => $auteurs->getArticle(),
+             'article' => $auteurs->getArticles(),
             'auteur' => $auteurs,
         ]);
     }
@@ -120,6 +121,23 @@ class AuteurController extends AbstractController
     return $this->render('auteur/auteur_sup.html.twig', [
         'auteurs' => $auteurs,
         'autformulaire' => $autform->createView(),
+    ]);
+}
+
+/**
+ * @param $id
+ * @param Auteursrepository $auteursrepo
+ * @Route("/auteur_recherche", name="auteur_recherche", methods={"GET"})
+ */
+public function rechercheauteur($id, AuteursRepository $auteursrepo)
+{
+    $auteur = $auteursrepo->findBy(array(
+        'nom' => 'Labbe',
+        'email' => 'mboyer@sfr.fr'
+    ),
+    array('prenom' => "DESC"), 1,0);
+    return $this->render('auteur/result_search.html.twig',[
+        'auteur' => $auteur,
     ]);
 }
 }
