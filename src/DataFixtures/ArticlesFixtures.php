@@ -55,7 +55,7 @@ class ArticlesFixtures extends Fixture
                     ->setCategorie($categorie)
                     ->setAuteur($auteurs)
                     ->setStatut($statut[0]);
-
+                    
                 $manager->persist($articles);
 
                 // Creation des commentaires pour chaque article 

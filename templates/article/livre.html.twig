@@ -43,6 +43,7 @@
 					<th> Résumé </th>
 					<th> Catégorie </th>
 					<th> Statut </th>
+					<th> slug </th>
 					<th> Action </th>
 					<th> Modifier </th>
 					<th> Supprimer </th>
@@ -60,11 +61,12 @@
 				<td> {{ article.resume }} </td>
 				<td> {{ article.categorie.titre }} </td>
 				<td> {{ article.statut }}</td>
-				<td><a href="{{ path('article_id', {'id': article.id}) }}"> Afficher l'article n° {{article.id}} </a>
+				<td> {{ article.slug }}</td>
+				<td><a href="{{ path('article_slug', {'slug': article.slug}) }}"> Afficher les détails de cet article </a>
 				</td>
-				<td><a href="{{ path('edit_modifier', {'id': article.id}) }}"> Modifier l'article n° {{article.id}} </a>
+				<td><a href="{{ path('edit_modifier', {'slug': article.slug}) }}"> Modifier l'article n° {{article.id}} </a>
 				</td>
-				<td><a href="{{ path('del_article', {'id': article.id}) }}"> Supprimer l'article n° {{article.id}} </a>
+				<td><a href="{{ path('del_article', {'slug': article.slug}) }}"> Supprimer l'article n° {{article.id}} </a>
 				</td>
 				<td><a href="{{ path('index_commentaire') }}"> Liste des commentaires </a></td>
 				<td>

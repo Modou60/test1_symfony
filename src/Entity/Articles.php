@@ -2,15 +2,22 @@
 
 namespace App\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use App\Repository\ArticlesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
+ * @UniqueEntity("titre")
+
  */
 class Articles
 {
@@ -34,6 +41,14 @@ class Articles
      */
     private $titre;
 
+
+    // /**
+    //  * @ORM\Column(type="string", length=255, unique=true, nullable=true)
+    //  * @Gedmo\Slug(fields={"titre"})
+    //  */
+    // private $slug;
+
+    
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(
@@ -49,11 +64,7 @@ class Articles
      */
     private $date;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
+    
     /**
      * @ORM\Column(type="text")
      * @ORM\Column(type="text")
@@ -86,6 +97,40 @@ class Articles
      * @ORM\Column(type="string", length=255)
      */
     private $statut;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Slug(fields={"titre"})
+     */
+    private $slug;
+
+
+        /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="articles_images", fileNameProperty="imageName")
+     * 
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string|null
+     */
+    private $imageName;
+
+
+    /**
+     * @var \DateTime $updated_at
+     * 
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+private $updatedAt;
+
+   
 
 
     public function __construct()
@@ -220,6 +265,18 @@ class Articles
     public function setStatut(string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

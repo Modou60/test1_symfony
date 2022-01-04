@@ -10,6 +10,7 @@ use App\Form\CommentairesType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Mapping\Annotation\Slug;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -146,7 +147,7 @@ class ArticleController extends AbstractController
     // }
 
     /**
-     * @Route("/{id}", name="article_id", methods={"GET", "POST"})
+     * @Route("/{slug}", name="article_slug", methods={"GET", "POST"})
      */
     public function montrer(Request $request, Articles $articles, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -161,7 +162,7 @@ class ArticleController extends AbstractController
             $entityManagerInterface->flush();
 
             // redirection
-            return $this->redirectToRoute('article_id', ["id" => $articles->getId()]);
+            return $this->redirectToRoute('article_slug', ["slug" => $articles->getSlug()]);
         }
 
         return $this->render('article/affichage.html.twig', [
@@ -176,16 +177,16 @@ class ArticleController extends AbstractController
 
     // affichage d'un article
     /**
-     * @param $id
+     * @param $slug
      * @param ArticlesRepository, $articlesrepo
-     * @Route("/{id}", name="recherche_id", methods={"GET"})    
+     * @Route("/{slug}", name="recherche_slug", methods={"GET"})    
      */
-    public function recherche($id, ArticlesRepository $articlesrepo)
+    public function recherche($slug, ArticlesRepository $articlesrepo)
     {
         // appel de doctrine et le repository
         // $articlesrepo = $this->getDoctrine()->getRepository(Articles::class);
-        // on recherche l'article avec son id
-        $article = $articlesrepo->find($id);
+        // on recherche l'article avec son slug
+        $article = $articlesrepo->find($slug);
 
         // on passe le tableau à twig
 
@@ -203,7 +204,7 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/{id}/edit", name="edit_modifier", methods={"GET", "POST"})
+     * @Route("/{slug}/edit", name="edit_modifier", methods={"GET", "POST"})
      */
     public function edit(Request $request, Articles $articles, EntityManagerInterface $manager)
     {

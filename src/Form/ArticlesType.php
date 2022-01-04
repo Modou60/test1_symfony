@@ -26,6 +26,10 @@ class ArticlesType extends AbstractType
             ->add('titre', TextType::class, [
                 'label' => 'Entrez le titre'
             ])
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image à inserrer'
+            ])
+
             ->add('resume', TextareaType::class, [
                 'label' => 'Entrez le résumé'
             ])
@@ -43,6 +47,7 @@ class ArticlesType extends AbstractType
                 // 'multiple' => true
                 // expanded => true
             ])
+
             ->add('Envoyer', SubmitType::class, [
                 'label' => 'valider'
             ]);
